@@ -32,3 +32,5 @@ module Kluster
     # config.eager_load_paths << Rails.root.join("extras")
   end
 end
+
+RSpotify::authenticate(ENV['SPOTIFY_CLIENT_ID'], ENV['SPOTIFY_CLIENT_SECRET'])

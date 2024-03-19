@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'reviews/update'
   get 'reviews/destroy'
   devise_for :users
+  get '/auth/spotify/callback', to: 'users#spotify'
   root to: "pages#home"
   get '/search', to: 'pages#search', as: 'search'
   get '/artists', to: 'artists#index', as: 'artists'
