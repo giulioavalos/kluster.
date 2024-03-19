@@ -1,8 +1,9 @@
+# app/controllers/pages_controller.rb
 class PagesController < ApplicationController
   def home
   end
 
-  def home
+  def search
     @search_query = params[:query]
     @artists = RSpotify::Artist.search(@search_query) if @search_query.present?
   end

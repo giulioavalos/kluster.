@@ -1,15 +1,6 @@
 <!-- app/views/pages/home.html.erb -->
-<h1>Buscador de artistas</h1>
+<h1>Kluster</h1>
 <%= form_tag({controller: "pages", action: "home"}, method: "get") do %>
   <%= text_field_tag :query, params[:query], placeholder: "Buscar artistas..." %>
-  <%= submit_tag "Buscar" %>
-<% end %>
-
-<% if @artists.present? %>
-  <h2>Resultados de la búsqueda:</h2>
-  <ul>
-    <% @artists.each do |artist| %>
-      <li><%= link_to artist.name, artist_path(artist.id) %></li>
-    <% end %>
-  </ul>
+  <%= link_to "Buscar", {controller: "pages", action: "search", query: params[:query]}, class: "btn btn-primary" %>
 <% end %>
