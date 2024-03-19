@@ -1,2 +1,6 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<!-- app/views/pages/home.html.erb -->
+<h1>Kluster</h1>
+<%= form_tag({controller: "pages", action: "home"}, method: "get") do %>
+  <%= text_field_tag :query, params[:query], placeholder: "Buscar artistas..." %>
+  <%= link_to "Buscar", {controller: "pages", action: "search", query: params[:query]}, class: "btn btn-primary" %>
+<% end %>

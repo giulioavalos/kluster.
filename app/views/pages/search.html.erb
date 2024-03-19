@@ -1,0 +1,9 @@
+<h2>Search results</h2>
+
+<% if @artists.present? %>
+  <ul>
+    <% @artists.each do |artist| %>
+      <li><%= link_to artist.name, artist_path(artist.id) %></li>
+    <% end %>
+  </ul>
+<% end %>
