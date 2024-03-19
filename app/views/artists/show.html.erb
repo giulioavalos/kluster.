@@ -15,7 +15,7 @@
 <h2>Albums:</h2>
 <ul>
   <% @artist.albums.first(5).each do |album| %>
-    <li><%= album.name %></li>
+    <li><%= link_to album.name, artist_album_path(@artist.id, album.id) %></li>
   <% end %>
 </ul>
 
