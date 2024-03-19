@@ -1,6 +1,17 @@
-<!-- app/views/pages/home.html.erb -->
-<h1>Kluster</h1>
-<%= form_tag({controller: "pages", action: "home"}, method: "get") do %>
-  <%= text_field_tag :query, params[:query], placeholder: "Buscar artistas..." %>
-  <%= link_to "Buscar", {controller: "pages", action: "search", query: params[:query]}, class: "btn btn-primary" %>
-<% end %>
+<div class="header">
+    <h1>Kluster.</h1>
+  </div>
+
+  <div class="main-content">
+    <div class="image-container">
+      <!-- Vous pouvez utiliser image_tag pour intégrer des images dans Rails -->
+    </div>
+    <div class="text-content">
+      <h2>Hey cool kids</h2>
+      <p>Find out about your favorite artists and albums!!</p>
+      <button onclick="location.href='<%= new_user_registration_path %>'">Sign Up</button>
+      <button onclick="location.href='<%= new_user_session_path %>'">Log In</button>
+    </div>
+  </div>
+</body>
+</html>

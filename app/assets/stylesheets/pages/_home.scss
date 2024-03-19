@@ -1,1 +1,31 @@
 // Specific CSS for your home-page
+.header {
+  text-align: center;
+  padding: 50px;
+  background-color: #f8f9fa;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.image-container img {
+  width: 100%;
+  max-width: 600px; /* Adjust the max-width as per your need */
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.text-content {
+  text-align: center;
+}
+
+button {
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
