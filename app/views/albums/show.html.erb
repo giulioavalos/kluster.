@@ -4,6 +4,11 @@
   <% if @album.images.any? %>
     <%= image_tag @album.images.first["url"], class: "album-image" %>
   <% end %>
+<ul>
+  <% @tracks.each do |track| %>
+    <li><%= track.name %></li>
+  <% end %>
+</ul>
 <% else %>
   <p>Album not found.</p>
 <% end %>

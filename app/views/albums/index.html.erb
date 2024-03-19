@@ -1,0 +1,6 @@
+<h2>Albums:</h2>
+<ul>
+  <% @artist.albums.each do |album| %>
+    <li><%= link_to album.name, artist_album_path(@artist.id, album.id) %></li>
+  <% end %>
+</ul>
