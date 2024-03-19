@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get 'reviews/create'
+  get 'reviews/show'
+  get 'reviews/edit'
+  get 'reviews/update'
+  get 'reviews/destroy'
   devise_for :users
   root to: "pages#home"
   get '/search', to: 'pages#search', as: 'search'
