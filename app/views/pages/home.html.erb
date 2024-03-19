@@ -4,3 +4,5 @@
   <%= text_field_tag :query, params[:query], placeholder: "Buscar artistas..." %>
   <%= link_to "Buscar", {controller: "pages", action: "search", query: params[:query]}, class: "btn btn-primary" %>
 <% end %>
+
+<%= link_to 'Sign in with Spotify', '/auth/spotify', method: :post %>
