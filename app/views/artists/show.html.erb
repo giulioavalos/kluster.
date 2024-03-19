@@ -5,9 +5,16 @@
   <%= image_tag @artist.images.first["url"], class: "artist-image" %>
 <% end %>
 
+<h2>Most Popular Tracks (Worldwide):</h2>
+<ul>
+  <% @artist.top_tracks(:US).first(5).each do |track| %>
+    <li><%= track.name %></li>
+  <% end %>
+</ul>
+
 <h2>Albums:</h2>
 <ul>
-  <% @artist.albums.each do |album| %>
+  <% @artist.albums.first(5).each do |album| %>
     <li><%= album.name %></li>
   <% end %>
 </ul>
@@ -18,5 +25,3 @@
     <li><%= genre %></li>
   <% end %>
 </ul>
-
-<!-- Other important information about the artist -->
