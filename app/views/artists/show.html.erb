@@ -1,0 +1,28 @@
+<!-- app/views/artists/show.html.erb -->
+<h1><%= @artist.name %></h1>
+
+<% if @artist.images.any? %>
+  <%= image_tag @artist.images.first["url"], class: "artist-image" %>
+<% end %>
+
+<h2>Most Popular Tracks (Worldwide):</h2>
+<ul>
+  <% @artist.top_tracks(:US).first(5).each do |track| %>
+    <li><%= track.name %></li>
+  <% end %>
+</ul>
+
+<h2>Albums:</h2>
+<ul>
+  <% @artist.albums.first(5).each do |album| %>
+    <li><%= link_to album.name, artist_album_path(@artist.id, album.id) %></li>
+  <% end %>
+  <%= link_to "See More", artist_albums_path(@artist), class: "btn btn-primary" %>
+</ul>
+
+<h2>Genres:</h2>
+<ul>
+  <% @artist.genres.each do |genre| %>
+    <li><%= genre %></li>
+  <% end %>
+</ul>
