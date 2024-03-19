@@ -1,0 +1,9 @@
+
+<% if @album %>
+  <h1><%= @album.name %></h1>
+  <% if @album.images.any? %>
+    <%= image_tag @album.images.first["url"], class: "album-image" %>
+  <% end %>
+<% else %>
+  <p>Album not found.</p>
+<% end %>

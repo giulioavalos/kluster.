@@ -18,4 +18,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  resources :artists do
+    resources :albums
+  end
 end
