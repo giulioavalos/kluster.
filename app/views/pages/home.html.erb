@@ -1,2 +1,15 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<!-- app/views/pages/home.html.erb -->
+<h1>Buscador de artistas</h1>
+<%= form_tag({controller: "pages", action: "home"}, method: "get") do %>
+  <%= text_field_tag :query, params[:query], placeholder: "Buscar artistas..." %>
+  <%= submit_tag "Buscar" %>
+<% end %>
+
+<% if @artists.present? %>
+  <h2>Resultados de la búsqueda:</h2>
+  <ul>
+    <% @artists.each do |artist| %>
+      <li><%= link_to artist.name, artist_path(artist.id) %></li>
+    <% end %>
+  </ul>
+<% end %>

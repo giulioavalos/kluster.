@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
-  get '/artists/search', to: 'artists#search', as: 'search_artists'
+  get '/search', to: 'pages#search', as: 'search'
+  get '/artists', to: 'artists#index', as: 'artists'
+  get 'artists/:id', to: 'artists#show', as: 'artist'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

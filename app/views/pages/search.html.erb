@@ -1,0 +1,10 @@
+<h2>Resultados de la búsqueda para "<%= @query %>"</h2>
+
+<% @artists.each do |artist| %>
+  <div>
+    <h3><%= artist.name %></h3>
+    <!-- Aquí puedes agregar más información sobre el artista -->
+  </div>
+<% end %>
+
+<%= link_to 'Ver todos los artistas', artists_path(q: @query) %>
