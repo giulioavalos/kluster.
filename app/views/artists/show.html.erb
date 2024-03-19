@@ -1,0 +1,22 @@
+<!-- app/views/artists/show.html.erb -->
+<h1><%= @artist.name %></h1>
+
+<% if @artist.images.any? %>
+  <%= image_tag @artist.images.first["url"], class: "artist-image" %>
+<% end %>
+
+<h2>Albums:</h2>
+<ul>
+  <% @artist.albums.each do |album| %>
+    <li><%= album.name %></li>
+  <% end %>
+</ul>
+
+<h2>Genres:</h2>
+<ul>
+  <% @artist.genres.each do |genre| %>
+    <li><%= genre %></li>
+  <% end %>
+</ul>
+
+<!-- Other important information about the artist -->

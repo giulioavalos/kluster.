@@ -1,6 +1,6 @@
 <!-- app/views/pages/home.html.erb -->
 <h1>Kluster</h1>
-<%= form_tag({controller: "pages", action: "home"}, method: "get") do %>
-  <%= text_field_tag :query, params[:query], placeholder: "Buscar artistas..." %>
-  <%= link_to "Buscar", {controller: "pages", action: "search", query: params[:query]}, class: "btn btn-primary" %>
+<%= form_tag({controller: "pages", action: "search"}, method: "get") do %>
+  <%= text_field_tag :query, params[:query], placeholder: "search an artist" %>
+  <%= submit_tag "Search" %>
 <% end %>
