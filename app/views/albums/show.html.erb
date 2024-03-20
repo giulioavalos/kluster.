@@ -1,14 +1,34 @@
-
 <% if @album %>
   <h1><%= @album.name %></h1>
   <% if @album.images.any? %>
     <%= image_tag @album.images.first["url"], class: "album-image" %>
   <% end %>
-<ul>
-  <% @tracks.each do |track| %>
-    <li><%= track.name %></li>
-  <% end %>
-</ul>
+      <!-- Button to open the review form -->
+  <%= link_to 'Leave a review', '#', class: 'btn btn-primary', id: 'open-review-form' %>
+
+  <!-- Review form container (initially hidden) -->
+  <div id="review-form-container" style="display: none;">
+    <%= render 'reviews/form', review: @review %>
+  </div>
+
+  <ul>
+    <% @tracks.each do |track| %>
+      <li><%= track.name %></li>
+    <% end %>
+  </ul>
+
+  <!-- Script to show/hide the review form -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var openButton = document.getElementById('open-review-form');
+      var formContainer = document.getElementById('review-form-container');
+
+      openButton.addEventListener('click', function(event) {
+        event.preventDefault();
+        formContainer.style.display = 'block';
+      });
+    });
+  </script>
 <% else %>
   <p>Album not found.</p>
 <% end %>
