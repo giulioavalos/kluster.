@@ -12,9 +12,10 @@ class UsersController < ApplicationController
       @user.birthdate = @spotify_user.birthdate
       @user.country = @spotify_user.country
       @user.save
-      redirect_to user_path(@user)
+      redirect_to root_path
     else
       @user = User.find_by(spotify_id: @spotify_user.spotify_id)
+      redirect_to root_path
     end
   end
 end
