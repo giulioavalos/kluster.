@@ -9,7 +9,9 @@
       <div class="button-padding">
       <button onclick="location.href='<%= new_user_registration_path %>'">Sign Up</button>
       <button onclick="location.href='<%= new_user_session_path %>'">Log In</button>
-      <%= link_to 'Sign in with Spotify', '/auth/spotify', method: :post %>
+      <button class="button-purple button">
+        <%= link_to 'Sign in with Spotify', '/auth/spotify', method: :post %>
+      </button>
       </div>
     </div>
     </div>
