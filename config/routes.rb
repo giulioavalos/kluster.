@@ -1,21 +1,16 @@
 Rails.application.routes.draw do
-  get 'reviews/create'
-  get 'reviews/show'
-  get 'reviews/edit'
-  get 'reviews/update'
-  get 'reviews/destroy'
   devise_for :users
   get '/auth/spotify/callback', to: 'users#spotify'
   root to: "pages#home"
+
+  resources :reviews, except: [:index, :new]
+  resources :artists, only: [:index, :show]
+
   get '/search', to: 'pages#search', as: 'search'
-  get '/artists', to: 'artists#index', as: 'artists'
-  get 'artists/:id', to: 'artists#show', as: 'artist'
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
+  # Health check route
   get "up" => "rails/health#show", as: :rails_health_check
-
-  # Defines the root path route ("/")
-  # root "posts#index"
+  resources :albums do
+    resources :reviews, only: [:create, :show, :edit, :update, :destroy]
+  end
 end
