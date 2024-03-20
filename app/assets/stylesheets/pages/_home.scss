@@ -1,8 +1,29 @@
 // Specific CSS for your home-page
 .header {
+  background-image: url('14360.jpg'); /* Remplacez avec le chemin réel de votre image */
+  background-size: cover; /* Cela garantit que l'image de fond couvre tout l'espace disponible */
+  background-position: center; /* Centre l'image de fond dans le div */
+  height: 100vh; /* Ou la hauteur que vous voulez pour votre en-tête */
+  color: rgba($color: #f1eff2, $alpha: 1.0); /* Si vous avez du texte et que vous voulez qu'il se détache sur l'image de fond */
+  display: block;
   text-align: center;
-  padding: 50px;
-  background-color: #f8f9fa;
+}
+
+.press-reviews {
+  text-align: center; /* Center the text */
+  margin-top: 20px; /* Add some space below the reviews */
+}
+
+.button-padding{
+  padding-top: 15px;
+}
+
+h2{
+  padding-bottom: 20px;
+}
+
+.text-padding {
+  padding-top: 130px;
 }
 
 .main-content {
