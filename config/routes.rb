@@ -8,6 +8,10 @@ Rails.application.routes.draw do
 
   get '/search', to: 'pages#search', as: 'search'
 
+  resources :artists do
+    resources :albums
+  end
+
   # Health check route
   get "up" => "rails/health#show", as: :rails_health_check
   resources :albums do
