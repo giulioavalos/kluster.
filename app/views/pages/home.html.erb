@@ -4,13 +4,13 @@
 
   <div class="main-content">
     <div class="image-container">
-      <!-- Vous pouvez utiliser image_tag pour intégrer des images dans Rails -->
     </div>
     <div class="text-content">
       <h2>Hey cool kids</h2>
       <p>Find out about your favorite artists and albums!!</p>
       <button onclick="location.href='<%= new_user_registration_path %>'">Sign Up</button>
       <button onclick="location.href='<%= new_user_session_path %>'">Log In</button>
+      <%= link_to 'Sign in with Spotify', '/auth/spotify', method: :post %>
     </div>
   </div>
 </body>
