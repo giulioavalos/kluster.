@@ -30,3 +30,40 @@
   background-color: #ddd;
   color: black;
 }
+
+p{
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-menu {
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-between;
+}
+
+.navbar-brand,
+.navbar-start,
+.navbar-end {
+  flex: 1; /* Cela garantit que chaque section de la navbar peut grandir de manière égale */
+  display: flex;
+  justify-content: center; /* Ceci centrera le texte dans .navbar-start */
+  align-items: center;
+}
+
+.navbar-brand {
+  justify-content: flex-start; /* Aligner le brand à gauche */
+}
+
+.navbar-end {
+  justify-content: flex-end; /* Aligner les liens à droite */
+}
