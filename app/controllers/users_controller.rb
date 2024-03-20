@@ -1,18 +1,20 @@
+require 'rspotify'
+
 class UsersController < ApplicationController
-  def callback
+  RSpotify.authenticate(ENV['SPOTIFY_CLIENT_ID'], ENV['SPOTIFY_CLIENT_SECRET'])
+  def spotify
+    @user = User.new
     @spotify_user = RSpotify::User.new(request.env['omniauth.auth'])
-    if User.find_by(spotify_id: @spotify_user.spotify_id).nil?
-      @user = User.new
-      @user.spotify_id = @spotify_user.spotify_id
-      @user.name = @spotify_user
+    @user.spotify_id = @spotify_user.uri
+    if User.find_by(spotify_id: @spotify_user.uri).nil?
+      @user.name = @spotify_user.display_name
+      @user.email = @spotify_user.email
+      @user.birthdate = @spotify_user.birthdate
+      @user.country = @spotify_user.country
       @user.save
-      Devise::login(@user)
+      redirect_to user_path(@user)
     else
       @user = User.find_by(spotify_id: @spotify_user.spotify_id)
-      Devise::login(@user)
     end
   end
 end
-
-
-current_user.reviews
