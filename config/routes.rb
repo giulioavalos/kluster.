@@ -13,4 +13,6 @@ Rails.application.routes.draw do
   resources :albums do
     resources :reviews, only: [:create, :show, :edit, :update, :destroy]
   end
+  resources :feed, only: [:index]
+
 end
