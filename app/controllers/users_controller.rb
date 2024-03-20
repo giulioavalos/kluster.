@@ -14,7 +14,8 @@ class UsersController < ApplicationController
       @user.save
       redirect_to user_path(@user)
     else
-      @user = User.find_by(spotify_id: @spotify_user.spotify_id)
+      @user = User.find_by(spotify_id: @spotify_user.uri)
+      redirect_to user_path(@user)
     end
   end
 end
