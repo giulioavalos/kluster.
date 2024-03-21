@@ -12,12 +12,11 @@ class UsersController < ApplicationController
       @user.email = @spotify_user.email
       @user.birthdate = @spotify_user.birthdate
       @user.country = @spotify_user.country
-      @user.avatar = @spotify_user.images.url
+      @user.avatars = @spotify_user.images
       @user.save
       sign_in @user
-      sign_i @user, :bypass => true
+      sign_in @user, :bypass => true
       redirect_to root_path
-      raise
     else
       @user = User.find_by(spotify_id: @spotify_user.uri)
       sign_in @user
