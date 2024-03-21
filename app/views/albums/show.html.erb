@@ -3,6 +3,14 @@
   <% if @album.images.any? %>
     <%= image_tag @album.images.first["url"], class: "album-image" %>
   <% end %>
+
+ <!-- Liens pour ajouter/retirer des favoris -->
+  <% if Favorite.find_by(user: current_user, spotify_item_id: @album).present? %>
+    <%= link_to 'Remove from Favorites', album_favorite_path(@album), method: :delete, class: 'btn btn-warning' %>
+  <% else %>
+    <%= link_to 'Add to Favorites', album_favorites_path(@album), method: :post, class: 'btn btn-success' %>
+  <% end %>
+
       <!-- Button to open the review form -->
   <%= link_to 'Leave a review', '#', class: 'btn btn-primary', id: 'open-review-form' %>
 
