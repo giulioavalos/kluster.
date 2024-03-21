@@ -22,5 +22,12 @@ Rails.application.routes.draw do
 
   # Health check route
   get "up" => "rails/health#show", as: :rails_health_check
+<<<<<<< HEAD
+=======
+  resources :albums do
+    resources :reviews, only: [:create, :show, :edit, :update, :destroy]
+  end
+  resources :feed, only: [:index]
+>>>>>>> 3f24e986f8f5f237c6a0c860a6e2a174b4a46af6
 
 end
