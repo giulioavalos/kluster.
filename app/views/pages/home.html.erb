@@ -1,27 +1,27 @@
+<% if user_signed_in? %>
+  <%= render 'pages/dashboard' %>
+<% else %>
 <div class="header">
-<div class="text-padding">
+  <div class="text-padding">
     <h1>Kluster.</h1>
-
-    
-
-  <div class="main-content">
-    <div class="text-content">
-      <h2>Hey cool kids</h2>
-      <p>Find out about your favorite artists and albums!!</p>
-      <div class="button-padding">
-      <button onclick="location.href='<%= new_user_registration_path %>'">Sign Up</button>
-      <button onclick="location.href='<%= new_user_session_path %>'">Log In</button>
-      <button class="button-purple button">
-        <%= link_to 'Sign in with Spotify', '/auth/spotify', method: :post %>
-      </button>
+    <div class="main-content">
+      <div class="text-content">
+        <h2>Hey cool kids</h2>
+        <p>Find out about your favorite artists and albums!!</p>
+        <div class="button-padding">
+          <button onclick="location.href='<%= new_user_registration_path %>'">Sign Up</button>
+          <button onclick="location.href='<%= new_user_session_path %>'">Log In</button>
+          <button class="button-purple button">
+            <%= link_to 'Sign in with Spotify', '/auth/spotify', method: :post %>
+          </button>
+        </div>
       </div>
-    </div>
     </div>
   </div>
   <div class="press-reviews">
     <p>"Best website, never seen that" - <i>The New York Times  </i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></p>
     <p>"An outstanding community for music lovers" - <i>The Guardian  </i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></p>
     <p>"France and Paraguay at the climax of their collaboration" - <i>Rolling Stone  </i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></p>
-    </div>
-    </div>
-</body>
+  </div>
+</div>
+<% end %>

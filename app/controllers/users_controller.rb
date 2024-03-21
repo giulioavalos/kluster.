@@ -12,9 +12,10 @@ class UsersController < ApplicationController
       @user.email = @spotify_user.email
       @user.birthdate = @spotify_user.birthdate
       @user.country = @spotify_user.country
+      @user.avatar = @spotify_user.images.first.url
       @user.save
-      sign_up @user
-      sign_i @user, :bypass => true
+      sign_in @user
+      sign_in @user, :bypass => true
       redirect_to root_path
     else
       @user = User.find_by(spotify_id: @spotify_user.uri)
@@ -22,5 +23,12 @@ class UsersController < ApplicationController
       sign_in @user, :bypass => true
       redirect_to root_path
     end
+  end
+  def update_avatar
+    user = current_user
+    avatars = fetch_avatars_from_spotify_api(user.spotify_id) # This is hypothetical, you should implement this method to fetch avatars from the Spotify API
+    user.avatar = avatars.map(&:to_json)
+    user.save
+    redirect_to root_path
   end
 end

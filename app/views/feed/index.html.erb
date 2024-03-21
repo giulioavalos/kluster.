@@ -1,0 +1,7 @@
+
+<!-- app/views/feed/index.html.erb -->
+<h1>Feed</h1>
+
+<% @reviews.each do |review| %>
+  <%= render partial: 'reviews/review_card', locals: { review: review } %>
+<% end %>
