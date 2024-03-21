@@ -17,7 +17,7 @@
   <% @artist.albums.first(5).each do |album| %>
     <li><%= link_to album.name, album_path(album.id) %></li>
   <% end %>
-  <%= link_to "See More", artist_path(@artist), class: "btn btn-primary" %>
+  <%= link_to "See More", "/", class: "btn btn-primary" %>
 </ul>
 
 <h2>Genres:</h2>

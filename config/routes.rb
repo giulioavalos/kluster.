@@ -11,11 +11,15 @@ Rails.application.routes.draw do
 
   resources :albums, only: :show  do
     resources :reviews, only: [:create]
+    resources :favorites, only: [:create]
   end
 
   resources :tracks, only: :show  do
     resources :reviews, only: [:create]
   end
+
+  resources :favorites, only: [:destroy]
+
 
   # Health check route
   get "up" => "rails/health#show", as: :rails_health_check

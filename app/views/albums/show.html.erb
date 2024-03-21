@@ -3,12 +3,22 @@
   <% if @album.images.any? %>
     <%= image_tag @album.images.first["url"], class: "album-image" %>
   <% end %>
+
+ <!-- Liens pour ajouter/retirer des favoris -->
+  <% if Favorite.find_by(user: current_user, spotify_item_id: @album.id).present? %>
+    <%= link_to 'Remove from Favorites', favorite_path(Favorite.find_by(user: current_user, spotify_item_id: @album.id)), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'btn btn-warning' %>
+  <% else %>
+    <%= simple_form_for Favorite.new, url: album_favorites_url(@album.id) do |f| %>
+      <%= f.submit "Add as favorite" %>
+    <% end %>
+  <% end %>
+
       <!-- Button to open the review form -->
   <%= link_to 'Leave a review', '#', class: 'btn btn-primary', id: 'open-review-form' %>
 
   <!-- Review form container (initially hidden) -->
   <div id="review-form-container" style="display: none;">
-    <%= render 'reviews/form', review: @review, type: "album" %>
+    <%#= render 'reviews/form', review: @review, type: "album" %>
   </div>
 
   <ul>

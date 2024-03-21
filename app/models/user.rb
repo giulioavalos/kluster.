@@ -1,7 +1,8 @@
 class User < ApplicationRecord
   has_many :reviews
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  has_many :favorites
+  has_many :favorite_albums, through: :favorites, source: :album
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 end
