@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   get '/auth/spotify/callback', to: 'users#spotify'
   root to: "pages#home"
 
-  # Routes for searching
   get '/search', to: 'pages#search', as: 'search'
 
   resources :artists, only: :show do

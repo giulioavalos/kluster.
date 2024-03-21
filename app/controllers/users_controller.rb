@@ -8,13 +8,19 @@ class UsersController < ApplicationController
     @user.spotify_id = @spotify_user.uri
     if User.find_by(spotify_id: @spotify_user.uri).nil?
       @user.name = @spotify_user.display_name
+      @user.password = "kluster"
       @user.email = @spotify_user.email
       @user.birthdate = @spotify_user.birthdate
       @user.country = @spotify_user.country
       @user.save
-      redirect_to user_path(@user)
+      sign_up @user
+      sign_i @user, :bypass => true
+      redirect_to root_path
     else
-      @user = User.find_by(spotify_id: @spotify_user.spotify_id)
+      @user = User.find_by(spotify_id: @spotify_user.uri)
+      sign_in @user
+      sign_in @user, :bypass => true
+      redirect_to root_path
     end
   end
 end
