@@ -13,7 +13,7 @@ class UsersController < ApplicationController
       @user.birthdate = @spotify_user.birthdate
       @user.country = @spotify_user.country
       @user.save
-      sign_up @user
+      sign_in @user
       sign_i @user, :bypass => true
       redirect_to root_path
     else

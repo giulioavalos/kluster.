@@ -8,10 +8,11 @@
       <div class="navbar-end">
         <% if user_signed_in? %>
           <%= link_to "Profile", edit_user_registration_path, class: "navbar-item" %>
-          <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "navbar-item" %>
+          <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
         <% else %>
-          <%= link_to "Sign Up", new_user_registration_path, class: "navbar-item" %>
-          <%= link_to "Log In", new_user_session_path, class: "navbar-item" %>
+          <button class="button-purple button">
+            <%= link_to 'Sign in with Spotify', '/auth/spotify', method: :post %>
+          </button>
         <% end %>
       </div>
     </div>
