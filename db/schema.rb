@@ -37,6 +37,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_21_140137) do
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
+  create_table "feed_items", force: :cascade do |t|
+    t.text "content"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_feed_items_on_user_id"
+  end
+
   create_table "likes", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "review_id", null: false
@@ -87,6 +95,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_21_140137) do
 
   add_foreign_key "favorites", "reviews"
   add_foreign_key "favorites", "users"
+  add_foreign_key "feed_items", "users"
   add_foreign_key "likes", "reviews"
   add_foreign_key "likes", "users"
   add_foreign_key "replies", "reviews"
