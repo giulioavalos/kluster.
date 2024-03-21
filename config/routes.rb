@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get '/search', to: 'pages#search', as: 'search'
   resources :artists, only: :show do
     resources :reviews, only: [:create]
+    resources :favorites, only: [:create]
   end
 
   resources :albums, only: :show  do
@@ -15,6 +16,7 @@ Rails.application.routes.draw do
 
   resources :tracks, only: :show  do
     resources :reviews, only: [:create]
+    resources :favorites, only: [:create]
   end
 
   resources :favorites, only: [:destroy]

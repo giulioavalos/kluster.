@@ -4,7 +4,13 @@
 <% if @artist.images.any? %>
   <%= image_tag @artist.images.first["url"], class: "artist-image" %>
 <% end %>
-
+<% if Favorite.find_by(user: current_user, spotify_item_id: @artist.id).present? %>
+  <%= link_to 'Remove from Favorites', favorite_path(Favorite.find_by(user: current_user, spotify_item_id: @artist.id)), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'btn btn-warning' %>
+<% else %>
+  <%= simple_form_for Favorite.new, url: artist_favorites_url(@artist.id) do |f| %>
+    <%= f.submit "Add as favorite" %>
+  <% end %>
+<% end %>
 <h2>Most Popular Tracks (Worldwide):</h2>
 <ul>
   <% @artist.top_tracks(:US).first(5).each do |track| %>
