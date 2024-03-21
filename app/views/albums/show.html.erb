@@ -11,6 +11,12 @@
     <%= render 'reviews/form', review: @review, type: "album" %>
   </div>
 
+  <ul>
+    <% @tracks.each do |track| %>
+      <li><%= track.name %></li>
+    <% end %>
+  </ul>
+
   <div class="review_section">
     <ul>
       <% Review.where(spotify_item_id: params[:id], spotify_item_type: "album").each do |review| %>
@@ -21,12 +27,6 @@
       <% end %>
     </ul>
   </div>
-
-  <ul>
-    <% @tracks.each do |track| %>
-      <li><%= track.name %></li>
-    <% end %>
-  </ul>
 
   <!-- Script to show/hide the review form -->
   <script>
