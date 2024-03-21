@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   root to: "pages#home"
 
   get '/search', to: 'pages#search', as: 'search'
-
   resources :artists, only: :show do
     resources :reviews, only: [:create]
     resources :favorites, only: [:create]
@@ -25,5 +24,4 @@ Rails.application.routes.draw do
 
   # Health check route
   get "up" => "rails/health#show", as: :rails_health_check
-
 end
