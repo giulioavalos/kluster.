@@ -2,15 +2,13 @@ class ReviewsController < ApplicationController
   before_action :set_review, only: [:show, :edit, :update, :destroy]
 
   def create
-    @album = RSpotify::Album.find(params[:id])
-    if @album
-      @review = @album.reviews.build(review_params)
-      respond_to do |format|
-        if @review.save
-          format.html { redirect_to @album, notice: 'Review was successfully created.' }
-        else
-          format.html { render :new }
-        end
+    @review = Review.new(review_params)
+    @review.user = current_user
+    respond_to do |format|
+      if @review.save
+        format.html { redirect_to album_path(@review.spotify_item_id), notice: 'Review was successfully created.', anchor: "review_section" }
+      else
+        format.html { render :new }
       end
     end
   end
@@ -41,6 +39,6 @@ class ReviewsController < ApplicationController
   end
 
   def review_params
-    params.require(:review).permit(:rating, :content)
+    params.require(:review).permit(:rating, :content, :spotify_item_id, :spotify_item_type)
   end
 end

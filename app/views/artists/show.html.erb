@@ -15,9 +15,9 @@
 <h2>Albums:</h2>
 <ul>
   <% @artist.albums.first(5).each do |album| %>
-    <li><%= link_to album.name, artist_album_path(@artist.id, album.id) %></li>
+    <li><%= link_to album.name, album_path(album.id) %></li>
   <% end %>
-  <%= link_to "See More", artist_albums_path(@artist), class: "btn btn-primary" %>
+  <%= link_to "See More", artist_path(@artist), class: "btn btn-primary" %>
 </ul>
 
 <h2>Genres:</h2>
@@ -26,3 +26,4 @@
     <li><%= genre %></li>
   <% end %>
 </ul>
+    <%#= render 'reviews/form', review: @review, type: "artist" %>
