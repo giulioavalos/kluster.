@@ -1,4 +1,4 @@
-<%= simple_form_for review, data: {turbo: false} do |f| %>
+<%= simple_form_for review, url: album_reviews_path(params[:id]), data: {turbo: false} do |f| %>
   <div class="form-inputs">
     <%= f.input :spotify_item_id, input_html: {value: params[:id]}  %>
     <%= f.input :spotify_item_type, input_html: {value: type}  %>

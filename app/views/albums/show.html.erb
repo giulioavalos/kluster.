@@ -18,7 +18,7 @@
 
   <!-- Review form container (initially hidden) -->
   <div id="review-form-container" style="display: none;">
-    <%#= render 'reviews/form', review: @review, type: "album" %>
+    <%= render 'reviews/form', review: @review, type: "album" %>
   </div>
 
   <ul>
@@ -41,8 +41,8 @@
   <!-- Script to show/hide the review form -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      var openButton = document.getElementById('open-review-form');
-      var formContainer = document.getElementById('review-form-container');
+      const openButton = document.getElementById('open-review-form');
+      const formContainer = document.getElementById('review-form-container');
 
       openButton.addEventListener('click', function(event) {
         event.preventDefault();
