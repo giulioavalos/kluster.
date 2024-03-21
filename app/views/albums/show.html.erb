@@ -5,10 +5,12 @@
   <% end %>
 
  <!-- Liens pour ajouter/retirer des favoris -->
-  <% if Favorite.find_by(user: current_user, spotify_item_id: @album).present? %>
-    <%= link_to 'Remove from Favorites', album_favorite_path(@album), method: :delete, class: 'btn btn-warning' %>
+  <% if Favorite.find_by(user: current_user, spotify_item_id: @album.id).present? %>
+    <%= link_to 'Remove from Favorites', favorite_path(Favorite.find_by(user: current_user, spotify_item_id: @album.id)), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'btn btn-warning' %>
   <% else %>
-    <%= link_to 'Add to Favorites', album_favorites_path(@album), method: :post, class: 'btn btn-success' %>
+    <%= simple_form_for Favorite.new, url: album_favorites_url(@album.id) do |f| %>
+      <%= f.submit "Add as favorite" %>
+    <% end %>
   <% end %>
 
       <!-- Button to open the review form -->
@@ -16,7 +18,7 @@
 
   <!-- Review form container (initially hidden) -->
   <div id="review-form-container" style="display: none;">
-    <%= render 'reviews/form', review: @review %>
+    <%#= render 'reviews/form', review: @review, type: "album" %>
   </div>
 
   <ul>
@@ -24,6 +26,17 @@
       <li><%= track.name %></li>
     <% end %>
   </ul>
+
+  <div class="review_section">
+    <ul>
+      <% Review.where(spotify_item_id: params[:id], spotify_item_type: "album").each do |review| %>
+        <li>
+          <%= review.rating %>
+          <%= review.content %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 
   <!-- Script to show/hide the review form -->
   <script>

@@ -5,12 +5,15 @@ class FavoritesController < ApplicationController
     # album = Album.find(params[:album_id])
     # current_user.favorite_albums << album
 
-    Favorite.create(user: current_user, album_id: params[:album_id]).save
-    raise
+    Favorite.new(user: current_user, spotify_item_id: params[:album_id], spotify_item_type: "album").save
+    redirect_to album_path(params[:album_id])
   end
 
   def destroy
-    album = current_user.favorites.find_by(album_id: params[:album_id]).album
-    current_user.favorite_albums.delete(album)
+    favorite = Favorite.find(params[:id])
+    album_id = favorite.spotify_item_id
+    favorite.destroy
+    redirect_to album_path(album_id)
+
   end
 end

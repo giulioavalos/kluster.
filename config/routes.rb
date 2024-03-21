@@ -6,21 +6,23 @@ Rails.application.routes.draw do
   # Routes for searching
   get '/search', to: 'pages#search', as: 'search'
 
-  # Routes for artists
-  resources :artists, only: [:index, :show]
-
-  # Routes for albums with nested favorites and likes
-  resources :albums do
-    resource :favorite, only: [:create, :destroy]
-    resource :like, only: [:create, :destroy]
-    resources :reviews, only: [:create, :show, :edit, :update, :destroy]
+  resources :artists, only: :show do
+    resources :reviews, only: [:create]
   end
 
-  # Routes for reviews with nested likes
-  resources :reviews, except: [:index, :new] do
-    resource :like, only: [:create, :destroy]
+  resources :albums, only: :show  do
+    resources :reviews, only: [:create]
+    resources :favorites, only: [:create]
   end
+
+  resources :tracks, only: :show  do
+    resources :reviews, only: [:create]
+  end
+
+  resources :favorites, only: [:destroy]
+
 
   # Health check route
   get "up" => "rails/health#show", as: :rails_health_check
+
 end
