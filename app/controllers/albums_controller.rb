@@ -10,6 +10,7 @@ class AlbumsController < ApplicationController
   def show
     @album = RSpotify::Album.find(params[:id])
     @tracks = @album.tracks
+    @review = Review.new
   end
 
   private

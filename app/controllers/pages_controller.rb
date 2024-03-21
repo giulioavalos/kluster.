@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   def home
+    @album = RSpotify::Album.find("6Hs9pYq5ionwBpGAp6iqi9")
   end
 
   def search
