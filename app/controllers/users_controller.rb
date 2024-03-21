@@ -14,15 +14,11 @@ class UsersController < ApplicationController
       @user.country = @spotify_user.country
       @user.save
       sign_up @user
-      # :bypass is set to ignore devise related callbacks and only save the
-      # user into session.
       sign_i @user, :bypass => true
       redirect_to root_path
     else
       @user = User.find_by(spotify_id: @spotify_user.uri)
       sign_in @user
-      # :bypass is set to ignore devise related callbacks and only save the
-      # user into session.
       sign_in @user, :bypass => true
       redirect_to root_path
     end
