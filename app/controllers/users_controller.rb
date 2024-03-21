@@ -12,7 +12,7 @@ class UsersController < ApplicationController
       @user.email = @spotify_user.email
       @user.birthdate = @spotify_user.birthdate
       @user.country = @spotify_user.country
-      @user.avatars = @spotify_user.images
+      @user.avatars = @spotify_user.images.url
       @user.save
       sign_in @user
       sign_in @user, :bypass => true

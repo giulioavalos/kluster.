@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   root to: "pages#home"
 
   get '/search', to: 'pages#search', as: 'search'
-
   resources :artists, only: :show do
     resources :reviews, only: [:create]
   end

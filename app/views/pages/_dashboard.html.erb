@@ -1,8 +1,9 @@
-<div class="dashboard">
+<div class="review-card">
   <% @reviews.each do |review| %>
-    <div class="post">
+    <div class="review">
       <h3><%= review.content %></h3>
       <p><%= review.rating %></p>
     </div>
   <% end %>
 </div>
+

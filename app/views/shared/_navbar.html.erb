@@ -7,14 +7,8 @@
           <div class="navbar-menu">
       <div class="navbar-end">
         <% if user_signed_in? %>
-          <li class="nav-item dropdown">
-            <%= image_tag @user.avatars, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Action", "#", class: "dropdown-item" %>
-              <%= link_to "Another action", "#", class: "dropdown-item" %>
-              <%= link_to "Log out", "#", class: "dropdown-item", data: {turbo_method: :delete} %>
+              <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
             </div>
-          </li>
         <% else %>
           <button class="button-purple button">
             <%= link_to 'Sign in with Spotify', '/auth/spotify', method: :post %>
