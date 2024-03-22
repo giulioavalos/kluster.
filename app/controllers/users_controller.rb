@@ -24,6 +24,18 @@ class UsersController < ApplicationController
       redirect_to root_path
     end
   end
+
+  def avatar_url
+    spotify_user = RSpotify::User.find(:id)
+    spotify_user.images.first['url'] if spotify_user.images.any?
+  end
+
+  def profile
+    @user = current_user
+    @reviews = @user.reviews
+    @avatar_url = RSpotify::User.find(:id)
+  end
+
   def update_avatar
     user = current_user
     avatars = fetch_avatars_from_spotify_api(user.spotify_id) # This is hypothetical, you should implement this method to fetch avatars from the Spotify API

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   get '/auth/spotify/callback', to: 'users#spotify'
+  get '/profile', to: 'users#profile'
   root to: "pages#home"
 
   get '/search', to: 'pages#search', as: 'search'
