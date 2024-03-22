@@ -31,4 +31,16 @@ class UsersController < ApplicationController
     user.save
     redirect_to root_path
   end
+
+  def follow(user)
+    followed << user unless self == user || followed.include?(user)
+  end
+
+  def unfollow(user)
+    followed.delete(user)
+  end
+
+  def following?(user)
+    followed.include?(user)
+  end
 end
