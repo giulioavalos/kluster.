@@ -25,15 +25,14 @@ class UsersController < ApplicationController
     end
   end
 
-  def avatar_url
-    spotify_user = RSpotify::User.find(:id)
-    spotify_user.images.first['url'] if spotify_user.images.any?
+  def show
+    @user = User.find(params[:id])
+    @reviews = @user.reviews
   end
 
   def profile
     @user = current_user
     @reviews = @user.reviews
-    @avatar_url = RSpotify::User.find(:id)
   end
 
   def update_avatar

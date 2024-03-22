@@ -11,10 +11,3 @@
 <% else %>
   <p>No reviews yet.</p>
 <% end %>
-
-<h2>Avatar</h2>
-<% if @avatar_url.present? %>
-  <%= image_tag @avatar_url, alt: 'Avatar' %>
-<% else %>
-  <p>No avatar available.</p>
-<% end %>
