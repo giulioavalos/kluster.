@@ -1,0 +1,32 @@
+// app/assets/stylesheets/reviews.scss
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #000000;
+  color: #ffffff;
+}
+.review-card {
+  background-color: 1px solid #1e1d1d;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+
+  .container-review {
+    display: flex;
+    flex-direction: row;
+    flex: auto;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .container-social {
+    font-size: 14px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    flex: auto;
+  }
+}
