@@ -28,15 +28,27 @@
   </ul>
 
   <div class="review_section">
-    <ul>
-      <% Review.where(spotify_item_id: params[:id], spotify_item_type: "album").each do |review| %>
-        <li>
-          <%= review.rating %>
-          <%= review.content %>
-        </li>
-      <% end %>
-    </ul>
-  </div>
+  <ul>
+    <% Review.where(spotify_item_id: params[:id], spotify_item_type: "album").each do |review| %>
+      <li>
+        <%= review.rating %>
+        <%= review.content %>
+        <% liked_review = Like.find_by(user: current_user, review_id: review.id) %>
+        <% if liked_review %>
+          <%= link_to 'Unlike', review_like_path(id: liked_review.id, review_id: review.id),
+              method: :delete,
+              data: { confirm: "Are you sure you want to unlike this review?" },
+              class: 'btn btn-warning' %>
+        <% else %>
+          <%= simple_form_for Like.new, url: review_likes_path(review_id: review.id), method: :post do |f| %>
+            <%= f.hidden_field :review_id, value: review.id %>
+            <%= f.submit "Like", class: 'btn btn-primary' %>
+          <% end %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>
 
   <!-- Script to show/hide the review form -->
   <script>

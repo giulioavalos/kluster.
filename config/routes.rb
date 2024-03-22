@@ -9,6 +9,10 @@ Rails.application.routes.draw do
     resources :favorites, only: [:create]
   end
 
+  resources :reviews, except: [:create] do
+    resources :likes, only: [:create]
+  end
+
   resources :albums, only: :show  do
     resources :reviews, only: [:create]
     resources :favorites, only: [:create]
@@ -20,6 +24,8 @@ Rails.application.routes.draw do
   end
 
   resources :favorites, only: [:destroy]
+  resources :likes, only: [:destroy]
+
 
 
   # Health check route
