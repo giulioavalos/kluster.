@@ -14,8 +14,6 @@ class ReviewsController < ApplicationController
   end
 
   def show
-    @album = RSpotify::Album.find(@review.spotify_item_id)
-    @album_image = @album.images.first['url']
   end
 
   def edit
