@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   get '/auth/spotify/callback', to: 'users#spotify'
+  get '/users/:id', to: 'users#show', as: 'user_profile'
   root to: "pages#home"
 
   get '/search', to: 'pages#search', as: 'search'
@@ -27,7 +28,7 @@ Rails.application.routes.draw do
   resources :likes, only: [:destroy]
 
 
-
+  resources :followings, only: [:create, :destroy]
   # Health check route
   get "up" => "rails/health#show", as: :rails_health_check
 end
