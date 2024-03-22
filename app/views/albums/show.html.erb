@@ -20,7 +20,7 @@
   <div id="review-form-container" style="display: none;">
     <%= render 'reviews/form', review: @review, type: "album" %>
   </div>
-  
+
   <ul>
     <% @tracks.each do |track| %>
       <li><%= track.name %></li>
@@ -58,7 +58,7 @@
 
       openButton.addEventListener('click', function(event) {
         event.preventDefault();
-        formContainer.style.display = 'flex';
+        formContainer.style.display = 'block';
       });
     });
   </script>

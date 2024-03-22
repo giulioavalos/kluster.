@@ -1,10 +1,16 @@
-<nav class="navbar">
-  <div class="navbar-brand">
-    <%= link_to "Kluster.", root_path, class: "navbar-item" %>
-  </div>
-  <div class="navbar-menu">
-    <div class="navbar-start">
-      <div class="navbar-item">
+<div class="navbar navbar-expand-sm navbar-kluster bg-transparent">
+  <div class="container-fluid">
+    <%= link_to root_path, class: "navbar-brand" do %>
+      <%= image_tag "https://media.istockphoto.com/id/1303141949/photo/white-blank-vinyl-record-disc-label-sticker-template-mock-up-isolated-on-black.jpg?s=612x612&w=0&k=20&c=7JRG_w1joTZPkv_Y-1nx5aVPgLQAPF6sC0gbsJDlsAQ=" %>
+    <% end %>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto">
+        <div class="navbar-item">
         <%= form_tag(search_path, method: :get, class: "navbar-form") do %>
           <div class="field has-addons">
             <div class="control">
@@ -14,19 +20,27 @@
           </div>
         <% end %>
       </div>
-    </div>
-
-    <div class="navbar-end">
-      <% if user_signed_in? %>
-        <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
-      <% else %>
-        <button class="button-purple button">
-          <%= link_to 'Sign in with Spotify', '/auth/spotify', method: :post %>
-        </button>
-      <% end %>
+        <% if user_signed_in? %>
+          <li class="nav-item dropdown">
+            <div class="navbar-brand">
+            <%= image_tag "#{current_user.avatar}", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <%= link_to "My Profile", user_profile_path(current_user.id), class: "dropdown-item" %>
+              <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
+            </div>
+          </li>
+            </div>
+        <% else %>
+          <!--li class="nav-item"-->
+          <button class="button-purple button">
+            <%= link_to 'Sign in with Spotify', '/auth/spotify', method: :post %>
+          </button>
+          <!--/li-->
+        <% end %>
+      </ul>
     </div>
   </div>
-</nav>
+</div>
 
 <script>
  document.addEventListener("DOMContentLoaded", function() {
