@@ -20,7 +20,7 @@
   <div id="review-form-container" style="display: none;">
     <%= render 'reviews/form', review: @review, type: "album" %>
   </div>
-  
+
   <ul>
     <% @tracks.each do |track| %>
       <li><%= track.name %></li>
@@ -35,7 +35,7 @@
         <%= review.content %>
         <% liked_review = Like.find_by(user: current_user, review_id: review.id) %>
         <% if liked_review %>
-          <%= link_to 'Unlike', review_like_path(id: liked_review.id, review_id: review.id),
+          <%= link_to 'Unlike', review_likes_path(id: liked_review.id, review_id: review.id),
               method: :delete,
               data: { confirm: "Are you sure you want to unlike this review?" },
               class: 'btn btn-warning' %>
@@ -58,7 +58,7 @@
 
       openButton.addEventListener('click', function(event) {
         event.preventDefault();
-        formContainer.style.display = 'flex';
+        formContainer.style.display = 'block';
       });
     });
   </script>

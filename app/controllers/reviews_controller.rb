@@ -5,7 +5,7 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.user = current_user
     respond_to do |format|
-      if @review.save
+      if @review.save!
         format.html { redirect_to album_path(@review.spotify_item_id), notice: 'Review was successfully created.', anchor: "review_section" }
       else
         format.html { render :new }
