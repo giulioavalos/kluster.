@@ -1,19 +1,32 @@
 class LikesController < ApplicationController
+  before_action :authenticate_user!
+
   def create
-    Like.create(user: current_user, spotify_item_id: params[:review_id], spotify_item_type: "review")
-    redirect_to review_path(params[:review_id])
+    @like = Like.new(like_params)
+    @like.review = Review.find(params[:review_id])
+    @like.user = current_user
+    @album = Review.find(params[:review_id]).spotify_item_id
+    if @like.save
+      redirect_to album_path(@album)
+    end
   end
 
   def destroy
     like = Like.find(params[:id])
     id = like.spotify_item_id
     like.destroy
-    redirect_to review_path(id)
+    @album = Review.find(params[:review_id]).spotify_item_id
+    redirect_to album_path(@album)
   end
 end
 
+private
+
+def like_params
+  params.require(:like).permit(:review_id)
+end
+
 # class FavoritesController < ApplicationController
-#   before_action :authenticate_user!
 #   def create
 #     if params["album_id"].present?
 #       Favorite.new(user: current_user, spotify_item_id: params[:album_id], spotify_item_type: "album").save
