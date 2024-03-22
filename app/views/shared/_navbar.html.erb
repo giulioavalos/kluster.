@@ -1,19 +1,81 @@
 <nav class="navbar">
-    <div class="navbar-brand">
-      <%= link_to "Kluster.", root_path, class: "navbar-item" %>
-    </div>
-      <div class="navbar-start">
-      </div>
-          <div class="navbar-menu">
-      <div class="navbar-end">
-        <% if user_signed_in? %>
-              <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
+  <div class="navbar-brand">
+    <%= link_to "Kluster.", root_path, class: "navbar-item" %>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start">
+      <div class="navbar-item">
+        <%= form_tag(search_path, method: :get, class: "navbar-form") do %>
+          <div class="field has-addons">
+            <div class="control">
+              <%= text_field_tag :query, params[:query], placeholder: "Search for artists", class: "input", id: "searchInput" %>
+              <%= button_tag "Search", class: "button-purple button", id: "searchButton" %>
             </div>
-        <% else %>
-          <button class="button-purple button">
-            <%= link_to 'Sign in with Spotify', '/auth/spotify', method: :post %>
-          </button>
+          </div>
         <% end %>
       </div>
     </div>
+
+    <div class="navbar-end">
+      <% if user_signed_in? %>
+        <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
+      <% else %>
+        <button class="button-purple button">
+          <%= link_to 'Sign in with Spotify', '/auth/spotify', method: :post %>
+        </button>
+      <% end %>
+    </div>
+  </div>
 </nav>
+
+<script>
+ document.addEventListener("DOMContentLoaded", function() {
+  const searchInput = document.getElementById("searchInput");
+  const searchButton = document.getElementById("searchButton");
+  const artistSuggestions = document.getElementById("artistSuggestions");
+
+  searchInput.addEventListener("input", function() {
+    const query = searchInput.value.trim();
+    if (query.length === 0) {
+      artistSuggestions.innerHTML = "";
+      return;
+    }
+
+    const url = `/search?query=${encodeURIComponent(query)}`;
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        artistSuggestions.innerHTML = "";
+        data.artists.items.forEach(artist => {
+          const artistOption = document.createElement("div");
+          artistOption.textContent = artist.name;
+          artistOption.classList.add("artist-option");
+          artistOption.addEventListener("click", function() {
+            searchInput.value = artist.name;
+            artistSuggestions.innerHTML = "";
+          });
+          artistSuggestions.appendChild(artistOption);
+        });
+      })
+      .catch(error => console.error("Error fetching artists:", error));
+  });
+
+  searchButton.addEventListener("click", function() {
+    const query = searchInput.value.trim();
+    if (query.length === 0) {
+      artistSuggestions.innerHTML = "";
+      return;
+    }
+
+    window.location.href = `/search?query=${encodeURIComponent(query)}`;
+  });
+
+  // Close suggestions when clicking outside the search input
+  document.addEventListener("click", function(event) {
+    if (!searchInput.contains(event.target)) {
+      artistSuggestions.innerHTML = "";
+    }
+  });
+});
+
+</script>
