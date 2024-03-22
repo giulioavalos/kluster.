@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_21_183706) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_22_175628) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -33,6 +33,24 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_21_183706) do
     t.string "spotify_item_id"
     t.string "spotify_item_type"
     t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
+
+  create_table "followers", force: :cascade do |t|
+    t.bigint "follower_id"
+    t.bigint "followed_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["followed_id"], name: "index_followers_on_followed_id"
+    t.index ["follower_id"], name: "index_followers_on_follower_id"
+  end
+
+  create_table "followings", force: :cascade do |t|
+    t.bigint "follower_id"
+    t.bigint "followed_user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["followed_user_id"], name: "index_followings_on_followed_user_id"
+    t.index ["follower_id"], name: "index_followings_on_follower_id"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -85,6 +103,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_21_183706) do
   end
 
   add_foreign_key "favorites", "users"
+  add_foreign_key "followers", "users", column: "followed_id"
+  add_foreign_key "followers", "users", column: "follower_id"
+  add_foreign_key "followings", "users", column: "followed_user_id"
+  add_foreign_key "followings", "users", column: "follower_id"
   add_foreign_key "likes", "reviews"
   add_foreign_key "likes", "users"
   add_foreign_key "replies", "reviews"

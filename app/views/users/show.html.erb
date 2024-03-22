@@ -1,0 +1,13 @@
+<h1>Profile</h1>
+<p>Email: <%= @user.email %></p>
+
+<h2>Reviews</h2>
+<% if @reviews.any? %>
+  <ul>
+    <% @reviews.each do |review| %>
+      <li><%= review.content %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No reviews yet.</p>
+<% end %>
