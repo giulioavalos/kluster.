@@ -1,6 +1,14 @@
 <h1>Profile</h1>
 <p>Email: <%= @user.email %></p>
 
+<div class="follower-following-count">
+<% following_count = Following.where(follower_id: @user.id).count %>
+<p>Following: <%= following_count %></p>
+<% followed_count = Following.where(followed_user_id: @user.id).count %>
+<p>Followers: <%= followed_count %></p>
+
+</div>
+
 <% unless current_user == @user %>
   <% followed_relationship = Following.find_by(followed_user_id: @user.id, follower_id: current_user.id) %>
   <% if followed_relationship %>
