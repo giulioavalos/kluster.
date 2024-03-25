@@ -6,8 +6,8 @@ Review.destroy_all
 User.destroy_all
 
 # Create some users
-user1 = User.create(email: 'user1@example.com', password: 'password1')
-user2 = User.create(email: 'user2@example.com', password: 'password2')
+user1 = User.create(email: 'user1@example.com', password: 'password1', avatar: 'https://i.pravatar.cc/150?img=1', name: 'Judy')
+user2 = User.create(email: 'user2@example.com', password: 'password2', avatar: 'https://i.pravatar.cc/150?img=2', name: 'John')
 
 # Create some reviews
 review1 = Review.create(user: user1, rating: 4, content: 'Great album!')
@@ -35,6 +35,5 @@ review2.update(spotify_item_id: spotify_album_ids.sample, spotify_item_type: 'al
 review3.update(spotify_item_id: spotify_album_ids.sample, spotify_item_type: 'album')
 review4.update(spotify_item_id: spotify_album_ids.sample, spotify_item_type: 'album')
 review5.update(spotify_item_id: spotify_album_ids.sample, spotify_item_type: 'album')
-
 
 puts "Seeded!"
