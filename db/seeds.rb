@@ -29,4 +29,14 @@ Like.create(user: user1, review: review5)
 Reply.create(user: user1, review: review2, content: 'I agree!')
 Reply.create(user: user2, review: review1, content: 'Me too!')
 
+# Assume these are the Spotify album IDs for demonstration purposes
+spotify_album_ids = ['5kFjYk3umY8Pu1lymIJLVy', '3cQO7jp5S9qLBoIVtbkSM1', '621cXqrTSSJi1WqDMSLmbL', '0ku3S11VuwERVu81G7m0jv', '4pBreb9uc4GXiBi56yREY1']
+
+review1.update(spotify_item_id: spotify_album_ids.sample, spotify_item_type: 'album')
+review2.update(spotify_item_id: spotify_album_ids.sample, spotify_item_type: 'album')
+review3.update(spotify_item_id: spotify_album_ids.sample, spotify_item_type: 'album')
+review4.update(spotify_item_id: spotify_album_ids.sample, spotify_item_type: 'album')
+review5.update(spotify_item_id: spotify_album_ids.sample, spotify_item_type: 'album')
+
+
 puts "Seeded!"
