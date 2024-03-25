@@ -5,7 +5,10 @@
     </div>
     <div class="container-review">
       <div class="box">
-
+        <% album = RSpotify::Album.find(review.spotify_item_id) %>
+          <%= link_to album_path(review.spotify_item_id) do %>
+            <%= image_tag album.images.first['url'] %>
+          <% end %>
         </div>
         <div class="box">
           <h2><%= review.content%></h2>
@@ -21,3 +24,6 @@
   </div>
 <% end %>
 <%= console %>
+ #mostrar foto de album
+ #mostrar avatar del user
+ #mostrar diferentes reviews de diferentes personas
