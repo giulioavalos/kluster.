@@ -1,6 +1,15 @@
 <h1>Profile</h1>
 <p>Email: <%= @user.email %></p>
 
+<% unless current_user == @user %>
+  <% followed_relationship = Following.find_by(followed_user_id: @user.id, follower_id: current_user.id) %>
+  <% if followed_relationship %>
+    <%= button_to 'Unfollow', following_path(followed_relationship), method: :delete %>
+  <% else %>
+    <%= button_to 'Follow', followings_path(followed_user_id: @user.id), method: :post %>
+  <% end %>
+<% end %>
+
 <h2>Reviews</h2>
 <% if @reviews.any? %>
   <ul>
