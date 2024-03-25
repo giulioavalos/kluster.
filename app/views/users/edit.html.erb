@@ -4,7 +4,8 @@
   <%= f.input :name %>
   <%= f.input :email %>
   <%= f.input :birthdate, as: :date %>
-  <%= f.input :avatar %>
+  <%= f.input :password, label: "New Password", required: false, placeholder: "Change password here" %>
+  <%= f.input :password_confirmation, label: "Confirm New Password", required: false %>
 
   <%= f.button :submit, 'Update' %>
 <% end %>
