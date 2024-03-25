@@ -6,8 +6,8 @@ Review.destroy_all
 User.destroy_all
 
 # Create some users
-user1 = User.create(email: 'user1@example.com', password: 'password1')
-user2 = User.create(email: 'user2@example.com', password: 'password2')
+user1 = User.create(email: 'user1@example.com', password: 'password1', avatar: 'https://i.pravatar.cc/150?img=1', name: 'Judy')
+user2 = User.create(email: 'user2@example.com', password: 'password2', avatar: 'https://i.pravatar.cc/150?img=2', name: 'John')
 
 # Create some reviews
 review1 = Review.create(user: user1, rating: 4, content: 'Great album!')
@@ -48,4 +48,5 @@ avatars = [
   'https://i.pravatar.cc/150?img=9',
   'https://i.pravatar.cc/150?img=10'
 ]
-# Update user with ID 1
+
+puts "Seeded!"
