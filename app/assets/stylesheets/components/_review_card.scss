@@ -16,13 +16,14 @@ body {
     display: flex;
     flex-direction: row;
     flex: auto;
-    justify-content: flex-start;
+    align-items: center;
   }
 
   .user-info h3 {
     margin: 15px;
     font-size: medium;
     text-align: center;
+    align-items: center;
   }
 
   .avatar img {
@@ -37,7 +38,6 @@ body {
     display: flex;
     flex-direction: row;
     flex: auto;
-    justify-content: center;
     width: 100%;
   }
 

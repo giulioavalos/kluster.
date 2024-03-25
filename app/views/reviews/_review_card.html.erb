@@ -1,4 +1,4 @@
-<% @reviews.each do |review|%>
+<% @reviews.each do |review| %>
   <div class="review-card col-6">
     <div class="user-info">
       <p class="avatar"><%= image_tag review.user.avatar %></p>
@@ -7,26 +7,24 @@
     <div class="container-review">
       <div class="box col-4">
         <div class="img-fluid">
-        <% album = RSpotify::Album.find(review.spotify_item_id) %>
+          <% album = RSpotify::Album.find(review.spotify_item_id) %>
           <%= link_to album_path(review.spotify_item_id) do %>
             <%= image_tag album.images.first['url'] %>
           <% end %>
-           </div>
         </div>
-        <div class="box-info">
-          <div class="box">
+      </div>
+      <div class="box-info">
+        <div class="box">
           <p>Rating <%= review.rating %></p>
         </div>
         <div class="box">
-          <h2><%= review.content%></h2>
+          <h2><%= review.content %></h2>
         </div>
-          </div>
-        </div>
+      </div>
     </div>
     <div class="container-social">
       <p><%=  %> likes</p>
       <p><%=  %> comments</p>
     </div>
-  <% end %>
-</div>
-<%= console %>
+  </div>
+<% end %>
