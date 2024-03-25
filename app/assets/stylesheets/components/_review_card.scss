@@ -13,6 +13,23 @@ body {
   display: flex;
   flex-direction: column;
 
+  .user-info {
+    display: flex;
+    flex-direction: row;
+    flex: auto;
+    justify-content: flex-start;
+  }
+
+  .user-info h3 {
+    margin: 15px;
+  }
+
+  .avatar img {
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+  }
+
   .container-review {
     display: flex;
     flex-direction: row;
@@ -28,4 +45,10 @@ body {
     flex-direction: row;
     flex: auto;
   }
+
+  img, svg {
+    vertical-align: middle;
+    height: 150px;
+    width: 150px;
+}
 }
