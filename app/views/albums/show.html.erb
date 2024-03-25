@@ -35,16 +35,16 @@
         <%= review.content %>
         <% liked_review = Like.find_by(user: current_user, review_id: review.id) %>
         <% if liked_review %>
-          <%= link_to 'Unlike', review_likes_path(id: liked_review.id, review_id: review.id),
-              method: :delete,
-              data: { confirm: "Are you sure you want to unlike this review?" },
+          <%= link_to 'Unlike', like_path(Like.find_by(user: current_user, review_id: review.id)),
+              data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to unlike this review?" },
               class: 'btn btn-warning' %>
         <% else %>
-          <%= simple_form_for Like.new, url: review_likes_path(review_id: review.id), method: :post do |f| %>
+          <%= simple_form_for Like.new, url: review_likes_path(review_id: review.id), method: :post, html: { class: "d-inline-block" } do |f| %>
             <%= f.hidden_field :review_id, value: review.id %>
             <%= f.submit "Like", class: 'btn btn-primary' %>
           <% end %>
         <% end %>
+        <span><%= review.likes_count %> likes</span>
       </li>
     <% end %>
   </ul>
