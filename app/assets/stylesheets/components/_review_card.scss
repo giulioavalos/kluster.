@@ -6,19 +6,57 @@ body {
   color: #ffffff;
 }
 .review-card {
-  background-color: #282727;
-  border-radius: 5px;
   padding: 10px;
   margin-bottom: 10px;
   display: flex;
   flex-direction: column;
 
-  .container-review {
+  .user-info {
     display: flex;
     flex-direction: row;
     flex: auto;
-    justify-content: space-between;
+    align-items: center;
+  }
+
+  .user-info h3 {
+    margin: 15px;
+    font-size: medium;
+    text-align: center;
+    align-items: center;
+    text-decoration: none;
+  }
+
+  .user-info h2 {
+    align-items: center;
+    font-size: medium;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  .box-info-2 p {
+    font-style: italic;
+  }
+
+  .avatar img {
+    height: 30px;
+    width: 30px;
+    border-radius: 15px;
+  }
+
+  .container-review {
+    background-color: #282727;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    flex: auto;
     width: 100%;
+    border-radius: 12px;
+  }
+
+  .box-info {
+    display: flex;
+    flex-direction: column;
+    flex: auto;
   }
 
   .container-social {
@@ -27,5 +65,13 @@ body {
     display: flex;
     flex-direction: row;
     flex: auto;
+  }
+
+  .box img {
+    vertical-align: middle;
+    height: 200px;
+    width: 200px;
+    position: center;
+    border-radius: 10px;
   }
 }

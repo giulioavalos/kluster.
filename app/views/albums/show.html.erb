@@ -3,8 +3,6 @@
   <% if @album.images.any? %>
     <%= image_tag @album.images.first["url"], class: "album-image" %>
   <% end %>
-
- <!-- Liens pour ajouter/retirer des favoris -->
   <% if Favorite.find_by(user: current_user, spotify_item_id: @album.id).present? %>
     <%= link_to 'Remove from Favorites', favorite_path(Favorite.find_by(user: current_user, spotify_item_id: @album.id)), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'btn btn-warning' %>
   <% else %>
@@ -13,10 +11,7 @@
     <% end %>
   <% end %>
   <div data-controller="review-form" >
-    <!-- Button to open the review form -->
     <button class='btn btn-primary' data-action="click->review-form#displayForm" id='open-review-form'>leave review</button>
-
-    <!-- Review form container (initially hidden) -->
     <div id="review-form-container" style="display: none;" data-review-form-target="form">
       <%= render 'reviews/form', review: @review, type: "album" %>
     </div>
@@ -48,10 +43,12 @@
     <% end %>
   </ul>
 </div>
-
-  <!-- Script to show/hide the review form -->
   <script>
-
+      openButton.addEventListener('click', function(event) {
+        event.preventDefault();
+        formContainer.style.display = 'flex';
+      });
+    });
   </script>
 <% else %>
   <p>Album not found.</p>
