@@ -14,6 +14,10 @@ class AlbumsController < ApplicationController
     @album_image = @album.images.first['url']
   end
 
+  def recommendation
+    @recommendations = RSpotify::Recommendations.generate(seed_tracks: my_fav_albums.map(@user.id))
+  end
+
   private
 
   def set_artist
