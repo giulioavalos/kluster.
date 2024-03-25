@@ -49,13 +49,3 @@ avatars = [
   'https://i.pravatar.cc/150?img=10'
 ]
 # Update user with ID 1
-user1 = User.find(1)
-user1.update(avatar: avatars.sample)
-user1.update(name: 'Judy')
-
-# Update user with ID 2
-user2 = User.find(2)
-user2.update(avatar: avatars.sample)
-user2.update(name: 'John')
-
-puts "Seeded!"
