@@ -1,56 +1,119 @@
 <% if @album %>
-  <h1><%= @album.name %></h1>
-  <% if @album.images.any? %>
-    <%= image_tag @album.images.first["url"], class: "album-image" %>
-  <% end %>
-  <% if Favorite.find_by(user: current_user, spotify_item_id: @album.id).present? %>
-    <%= link_to 'Remove from Favorites', favorite_path(Favorite.find_by(user: current_user, spotify_item_id: @album.id)), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'btn btn-warning' %>
-  <% else %>
-    <%= simple_form_for Favorite.new, url: album_favorites_url(@album.id) do |f| %>
-      <%= f.submit "Add as favorite" %>
-    <% end %>
-  <% end %>
-  <div data-controller="review-form" >
-    <button class='btn btn-primary' data-action="click->review-form#displayForm" id='open-review-form'>leave review</button>
-    <div id="review-form-container" style="display: none;" data-review-form-target="form">
-      <%= render 'reviews/form', review: @review, type: "album" %>
+  <div class="container mt-4">
+    <div class="row align-items-start">
+      <div class="col-md-4">
+        <% if @album.images.any? %>
+          <%= image_tag @album.images.first["url"], class: "album-image img-fluid mb-3" %>
+        <% end %>
+      </div>
+
+      <div class="col-md-8 d-flex flex-column justify-content-between">
+      <h1><%= @album.name %> <i>by</i> <%= @artist.name %></h1>
+
+        <div class="mt-auto">
+          <div class="d-flex align-items-center">
+            <% if Favorite.find_by(user: current_user, spotify_item_id: @album.id).present? %>
+              <%= link_to 'Remove from Favorites', favorite_path(Favorite.find_by(user: current_user, spotify_item_id: @album.id)), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'btn btn-warning me-2' %>
+            <% else %>
+              <%= simple_form_for Favorite.new, url: album_favorites_url(@album.id) do |f| %>
+                <%= f.submit "Add as favorite ", class: 'btn btn-primary me-2' %>
+              <% end %>
+            <% end %>
+
+            <button class='btn btn-primary' data-action="click->review-form#displayForm" id='open-review-form'>Leave a review</button>
+          </div>
+
+          <div id="review-form-container" class="d-none mt-3" data-review-form-target="form">
+            <%= render 'reviews/form', review: @review, type: "album" %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+      <div class="col-md-8">
+        <div class="row">
+          <div class="col">
+            <h2>Tracks</h2>
+            <ol>
+              <% @tracks.first(@tracks.size / 2).each do |track| %>
+                <li><%= track.name %></li>
+              <% end %>
+            </ol>
+          </div>
+          <div class="col">
+            <ol start="<%= @tracks.size / 2 + 1 %>">
+              <% @tracks.last(@tracks.size / 2).each do |track| %>
+                <li><%= track.name %></li>
+              <% end %>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review_section mt-5" class="col-md-4">
+      <h2>Reviews</h2>
+
+      <ul class="list-unstyled">
+       <% Review.where(spotify_item_id: params[:id], spotify_item_type: "album").each do |review| %>
+      <div class="review-box d-flex mb-3">
+        <div class="review-content">
+          <div class="review-header mb-2">
+            <%= image_tag "#{review.user.avatar}", class: "avatar dropdown-toggle profile-image mr-3", alt:"profile image"%>
+
+            <!-- Informations utilisateur telles que le nombre de followers et de reviews -->
+            <div class="row">
+              <strong class="mr-2" style="color: black"><%= review.user.name %></strong>
+
+              <span class="review-info text-muted">
+                <%= Following.where(followed_user_id: review.user).count %> followers <%= review.user.reviews.count %> reviews
+              </span>
+            </div>
+
+          </div>
+          <div class="review-rating mb-2">
+            <!-- Ici, mettez en place le système d'étoiles en fonction de review.rating -->
+          </div>
+          <p class="review-text"><%= review.content %></p>
+          <div class="review-footer">
+            <span class="review-date text-muted"><%= review.created_at.strftime("%d %B %Y") %></span>
+            <!-- Boutons Like et Unlike -->
+          </div>
+        </div>
+      </div>
+
+          <% liked_review = Like.find_by(user: current_user, review_id: review.id) %>
+          <% if liked_review %>
+            <%= link_to 'Unlike', like_path(Like.find_by(user: current_user, review_id: review.id)),
+              data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to unlike this review?" },
+              class: 'btn btn-warning btn-sm me-2' %>
+          <% else %>
+            <%= simple_form_for Like.new, url: review_likes_path(review_id: review.id), method: :post do |f| %>
+              <%= f.hidden_field :review_id, value: review.id %>
+              <%= f.submit "Like", class: 'btn btn-primary btn-sm me-2' %>
+            <% end %>
+          <% end %>
+          <span><%= review.likes_count %> likes</span>
+        </div>
+      </div>
+      <div><%= review.content %></div>
+    </li>
+  </div>
+<% end %>
+      </ul>
     </div>
   </div>
-  <ul>
-    <% @tracks.each do |track| %>
-      <li><%= track.name %></li>
-    <% end %>
-  </ul>
-
-  <div class="review_section">
-  <ul>
-    <% Review.where(spotify_item_id: params[:id], spotify_item_type: "album").each do |review| %>
-      <li>
-        <%= review.rating %>
-        <%= review.content %>
-        <% liked_review = Like.find_by(user: current_user, review_id: review.id) %>
-        <% if liked_review %>
-          <%= link_to 'Unlike', like_path(Like.find_by(user: current_user, review_id: review.id)),
-              data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to unlike this review?" },
-              class: 'btn btn-warning' %>
-        <% else %>
-          <%= simple_form_for Like.new, url: review_likes_path(review_id: review.id), method: :post, html: { class: "d-inline-block" } do |f| %>
-            <%= f.hidden_field :review_id, value: review.id %>
-            <%= f.submit "Like", class: 'btn btn-primary' %>
-          <% end %>
-        <% end %>
-        <span><%= review.likes_count %> likes</span>
-      </li>
-    <% end %>
-  </ul>
-</div>
-  <script>
-      openButton.addEventListener('click', function(event) {
-        event.preventDefault();
-        formContainer.style.display = 'flex';
-      });
-    });
-  </script>
 <% else %>
   <p>Album not found.</p>
 <% end %>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const openButton = document.getElementById('open-review-form');
+    const formContainer = document.getElementById('review-form-container');
+    openButton.addEventListener('click', function(event) {
+      event.preventDefault();
+      formContainer.classList.toggle('d-none');
+    });
+  });
+</script>
