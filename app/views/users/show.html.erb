@@ -1,13 +1,50 @@
 <h1>Profile</h1>
-<p>Email: <%= @user.email %></p>
+<p><%= @user.name%></p>
 
-<h2>Reviews</h2>
-<% if @reviews.any? %>
-  <ul>
-    <% @reviews.each do |review| %>
-      <li><%= review.content %></li>
-    <% end %>
-  </ul>
+<% if @user.avatar.present? %>
+  <%= image_tag @user.avatar, alt: "User Avatar" %>
 <% else %>
-  <p>No reviews yet.</p>
+  <p>No avatar</p>
 <% end %>
+
+<% if current_user == @user %>
+  <%= link_to 'Edit Profile', edit_user_path(@user), class: 'btn btn-primary' %>
+<% end %>
+
+<% followed_count = Following.where(followed_user_id: @user.id).count %>
+<p>Followers: <%= followed_count %></p>
+<% following_count = Following.where(follower_id: @user.id).count %>
+<p>Following: <%= following_count %></p>
+</div>
+
+<% unless current_user == @user %>
+  <% followed_relationship = Following.find_by(followed_user_id: @user.id, follower_id: current_user.id) %>
+  <% if followed_relationship %>
+    <%= button_to 'Unfollow', following_path(followed_relationship), method: :delete %>
+  <% else %>
+    <%= button_to 'Follow', followings_path(followed_user_id: @user.id), method: :post %>
+  <% end %>
+<% end %>
+
+<h2>My Reviews</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Album</th>
+      <th>Rating</th>
+      <th>Content</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @reviews.each do |review| %>
+      <% album = RSpotify::Album.find(review.spotify_item_id) %>
+      <tr>
+        <td><%= album.name %></td>
+        <td><%= review.rating %></td>
+        <td><%= review.content %></td>
+        <td><%= link_to 'View Review', review_path(review) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

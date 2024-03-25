@@ -11,6 +11,7 @@ class AlbumsController < ApplicationController
     @album = RSpotify::Album.find(params[:id])
     @tracks = @album.tracks
     @review = Review.new
+    @album_image = @album.images.first['url']
   end
 
   private
