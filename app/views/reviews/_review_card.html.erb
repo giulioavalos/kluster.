@@ -1,8 +1,12 @@
 <% @reviews.each do |review| %>
   <div class="review-card col-6">
     <div class="user-info">
-      <p class="avatar"><%= image_tag review.user.avatar %></p>
-      <h3><%= review.user.name %></h3>
+      <%= link_to user_profile_path(review.user) do %>
+        <p class="avatar"><%= image_tag review.user.avatar %></p>
+      <% end %>
+       <%= link_to user_profile_path(review.user) do %>
+        <h2><%= review.user.name %></h2>
+        <% end %>
     </div>
     <div class="container-review">
       <div class="box col-4">
@@ -14,11 +18,11 @@
         </div>
       </div>
       <div class="box-info">
-        <div class="box">
-          <p>Rating <%= review.rating %></p>
+        <div class="box-info-1">
+          <h3><%= review.rating %>/10</h3>
         </div>
-        <div class="box">
-          <h2><%= review.content %></h2>
+        <div class="box-info-2 font-italic">
+          <p>"<%= review.content %>"</p>
         </div>
       </div>
     </div>

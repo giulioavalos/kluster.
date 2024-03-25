@@ -6,7 +6,6 @@ body {
   color: #ffffff;
 }
 .review-card {
-  border-radius: 5px;
   padding: 10px;
   margin-bottom: 10px;
   display: flex;
@@ -24,6 +23,18 @@ body {
     font-size: medium;
     text-align: center;
     align-items: center;
+    text-decoration: none;
+  }
+
+  .user-info h2 {
+    align-items: center;
+    font-size: medium;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  .box-info-2 p {
+    font-style: italic;
   }
 
   .avatar img {
@@ -39,6 +50,7 @@ body {
     flex-direction: row;
     flex: auto;
     width: 100%;
+    border-radius: 12px;
   }
 
   .box-info {
@@ -60,5 +72,6 @@ body {
     height: 200px;
     width: 200px;
     position: center;
+    border-radius: 10px;
   }
 }
