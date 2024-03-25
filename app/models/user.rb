@@ -13,7 +13,13 @@ class User < ApplicationRecord
   has_many :follower_relationships, foreign_key: :followed_id, class_name: 'Following'
   has_many :followers, through: :follower_relationships, source: :follower
 
+  def following?(other_user)
+    followed_relationships.exists?(followed_user_id: other_user.id)
+  end
 
+  def follow(other_user)
+    followed_relationships.create(followed_user_id: other_user.id)
+  end
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable

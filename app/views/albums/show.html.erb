@@ -10,11 +10,12 @@
       <%= f.submit "Add as favorite" %>
     <% end %>
   <% end %>
-  <%= link_to 'Leave a review', '#', class: 'btn btn-primary', id: 'open-review-form' %>
-  <div id="review-form-container" style="display: none;">
-    <%= render 'reviews/form', review: @review, type: "album" %>
+  <div data-controller="review-form" >
+    <button class='btn btn-primary' data-action="click->review-form#displayForm" id='open-review-form'>leave review</button>
+    <div id="review-form-container" style="display: none;" data-review-form-target="form">
+      <%= render 'reviews/form', review: @review, type: "album" %>
+    </div>
   </div>
-
   <ul>
     <% @tracks.each do |track| %>
       <li><%= track.name %></li>
@@ -29,9 +30,8 @@
         <%= review.content %>
         <% liked_review = Like.find_by(user: current_user, review_id: review.id) %>
         <% if liked_review %>
-          <%= link_to 'Unlike', review_likes_path(id: liked_review.id, review_id: review.id),
-              method: :delete,
-              data: { confirm: "Are you sure you want to unlike this review?" },
+          <%= link_to 'Unlike', like_path(Like.find_by(user: current_user, review_id: review.id)),
+              data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to unlike this review?"},
               class: 'btn btn-warning' %>
         <% else %>
           <%= simple_form_for Like.new, url: review_likes_path(review_id: review.id), method: :post do |f| %>
@@ -44,10 +44,6 @@
   </ul>
 </div>
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const openButton = document.getElementById('open-review-form');
-      const formContainer = document.getElementById('review-form-container');
-
       openButton.addEventListener('click', function(event) {
         event.preventDefault();
         formContainer.style.display = 'flex';
