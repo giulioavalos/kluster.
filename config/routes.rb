@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   get '/users/:id', to: 'users#show', as: 'user_profile'
   post '/followings', to: 'followings#create', as: 'followings'
   delete 'followings/:id', to: 'followings#destroy', as: 'following'
+  get 'users/:id/edit', to: 'users#edit', as: 'edit_user'
+  patch '/users/:id', to: 'users#update', as: 'update_user'
+  patch 'users/:id', to: 'users#update'
   root to: "pages#home"
 
   get '/search', to: 'pages#search', as: 'search'

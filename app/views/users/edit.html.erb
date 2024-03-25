@@ -1,0 +1,10 @@
+<h1>Edit Profile</h1>
+
+<%= simple_form_for @user, url: update_user_path(@user), method: :patch do |f| %>
+  <%= f.input :name %>
+  <%= f.input :email %>
+  <%= f.input :birthdate, as: :date %>
+  <%= f.input :avatar %>
+
+  <%= f.button :submit, 'Update' %>
+<% end %>

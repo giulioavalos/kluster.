@@ -1,12 +1,20 @@
 <h1>Profile</h1>
-<p>Email: <%= @user.email %></p>
+<p><%= @user.name%></p>
 
-<div class="follower-following-count">
-<% following_count = Following.where(follower_id: @user.id).count %>
-<p>Following: <%= following_count %></p>
+<% if @user.avatar.present? %>
+  <%= image_tag @user.avatar, alt: "User Avatar" %>
+<% else %>
+  <p>No avatar</p>
+<% end %>
+
+<% if current_user == @user %>
+  <%= link_to 'Edit Profile', edit_user_path(@user), class: 'btn btn-primary' %>
+<% end %>
+
 <% followed_count = Following.where(followed_user_id: @user.id).count %>
 <p>Followers: <%= followed_count %></p>
-
+<% following_count = Following.where(follower_id: @user.id).count %>
+<p>Following: <%= following_count %></p>
 </div>
 
 <% unless current_user == @user %>
