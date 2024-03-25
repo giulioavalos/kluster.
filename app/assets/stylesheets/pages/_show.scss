@@ -1,0 +1,75 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: row;
+  background-color: #282727;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  margin: 20px;
+}
+.profile-info img {
+  width: 150px;
+  height: 150px;
+  border-radius: 75px;
+  margin: 50px;
+}
+
+.profile-avatar {
+  align-items: relative;
+}
+
+.profile-numbers {
+  display: flex;
+  flex-direction: column;
+  flex: auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  align-items: flex-start;
+}
+
+.profile-numbers .container {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+}
+
+.profile-numbers .btn {
+  width: 75px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.review-info {
+  display: flex;
+  flex-direction: column;
+  flex: auto;
+  background-color: #503e54;
+  border-radius: 12px;
+  margin: 20px;
+  align-items: center;
+}
+
+.review-info h2 {
+  font-weight: bold;
+  display: flex;
+  text-align: center;
+  margin: 10px;
+  padding: 0;
+}
+
+.review-card {
+  display: flex;
+  flex-direction: wrap;
+  flex: auto;
+  width: 75%;
+  align-items: center;
+}
+.review-card .box-info {
+  margin-left: 45px;
+}

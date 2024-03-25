@@ -1,6 +1,6 @@
 <% @reviews.each do |review| %>
   <div class="review-card col-6">
-    <div class="user-info">
+    <div class="user-info <%= (params[:controller] == 'users' && params[:action] == 'show') ? 'd-none' : '' %>">
       <%= link_to user_profile_path(review.user) do %>
         <p class="avatar"><%= image_tag review.user.avatar %></p>
       <% end %>
@@ -26,7 +26,7 @@
         </div>
       </div>
     </div>
-    <div class="container-social">
+    <div class="container-social <%= (params[:controller] == 'users' && params[:action] == 'show') ? 'd-none' : '' %>">
       <p><%=  %> likes</p>
       <p><%=  %> comments</p>
     </div>
