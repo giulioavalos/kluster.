@@ -5,6 +5,9 @@ class PagesController < ApplicationController
 
   def search
     @search_query = params[:query]
-    @artists = RSpotify::Artist.search(@search_query) if @search_query.present?
+    if @search_query.present?
+      @artists = RSpotify::Artist.search(@search_query)
+      @albums = RSpotify::Album.search(@search_query)
+    end
   end
 end

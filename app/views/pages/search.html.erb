@@ -1,9 +1,19 @@
-<h2>Search results</h2>
+<h1>Search Results</h1>
 
-<% if @artists.present? %>
+<% if @artists.any? %>
+  <h2>Artists</h2>
   <ul>
     <% @artists.each do |artist| %>
-      <li><%= link_to artist.name, artist_path(artist.id) %></li>
+      <li><%= artist.name %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<% if @albums.any? %>
+  <h2>Albums</h2>
+  <ul>
+    <% @albums.each do |album| %>
+      <li><%= album.name %> by <%= album.artists.map(&:name).join(', ') %></li>
     <% end %>
   </ul>
 <% end %>
