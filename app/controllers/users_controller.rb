@@ -28,6 +28,9 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @reviews = @user.reviews
+  rescue ActiveRecord::RecordNotFound
+    # User not found, redirect to 404 page
+    render file: "#{Rails.root}/public/404.html", layout: 'application', status: :not_found
   end
 
   def profile
