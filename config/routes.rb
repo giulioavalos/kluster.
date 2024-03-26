@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'users/:id/edit', to: 'users#edit', as: 'edit_user'
   patch '/users/:id', to: 'users#update', as: 'update_user'
   patch 'users/:id', to: 'users#update'
+
   root to: "pages#home"
 
   get '/search', to: 'pages#search', as: 'search'
@@ -35,4 +36,6 @@ Rails.application.routes.draw do
 
   # Health check route
   get "up" => "rails/health#show", as: :rails_health_check
+
+  get '*path', to: 'application#not_found'
 end
