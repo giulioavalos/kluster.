@@ -63,13 +63,9 @@
   padding: 0;
 }
 
-.review-card {
+.review-info p {
   display: flex;
-  flex-direction: wrap;
-  flex: auto;
-  width: 75%;
-  align-items: center;
-}
-.review-card .box-info {
-  margin-left: 45px;
+  text-align: center;
+  margin: 10px;
+  padding: 0;
 }

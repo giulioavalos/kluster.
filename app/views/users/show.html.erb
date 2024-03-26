@@ -8,7 +8,7 @@
       <% end %>
     </div>
 
-    <div class="profile-numbers">
+<section class="profile-numbers">
       <h2><%= @user.name %></h2>
 
       <div class="container">
@@ -35,14 +35,12 @@
           <% end %>
         <% end %>
         </div>
-      </div>
     </div>
   </div>
-
-  <div class="review-info">
+</section>
+<section>
     <h2><%= @user.name %>'s reviews</h2>
     <div class="review-card">
       <%= render "reviews/review_card" %>
     </div>
-  </div>
-</div>
+</section>
