@@ -1,0 +1,62 @@
+.album-image {
+  max-width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,.05);
+}
+
+.review_section {
+  background-color: #afb0b1;
+  padding: 20px;
+  border-radius: 10px;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.review-box {
+  background-color: #fff;
+  border: 1px solid #e1e1e1;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+}
+
+.profile-image {
+  width: 48px; /* Ou la taille que vous souhaitez */
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.review-content {
+  flex-grow: 1;
+}
+
+.review-header {
+  display: flex;
+  align-items: center;
+  font-size: 0.9em;
+}
+
+.review-info {
+  font-size: 0.8em;
+}
+
+.review-rating {
+  /* Ajoutez ici le style pour votre système d'étoiles */
+}
+
+.review-text {
+  font-size: 1em;
+  color: #333;
+}
+
+.review-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.8em;
+}
+
+.review-date {
+  /* Style supplémentaire si nécessaire */
+}
