@@ -8,7 +8,7 @@
       <% end %>
     </div>
 
-<section class="profile-numbers">
+    <div class="profile-numbers">
       <h2><%= @user.name %></h2>
 
       <div class="container">
@@ -35,12 +35,59 @@
           <% end %>
         <% end %>
         </div>
+      </div>
     </div>
   </div>
-</section>
-<section>
+
+  <div class="review-info">
     <h2><%= @user.name %>'s reviews</h2>
-    <div class="review-card">
-      <%= render "reviews/review_card" %>
+    <% @reviews.each do |review| %>
+  <div class="review-card">
+    <div class="container-user <%= (params[:controller] == 'users' && params[:action] == 'show') ? 'd-none' : '' %>">
+      <%= link_to user_profile_path(review.user) do %>
+        <p class="avatar"><%= image_tag review.user.avatar %></p>
+      <% end %>
+      <div class="row">
+        <%= link_to user_profile_path(review.user) do %>
+        <strong class="mr-2" style="color: white"><%= review.user.name %></strong>
+        <% end %>
+        <span class="review-info text-white">
+        <%= Following.where(followed_user_id: review.user).count %> followers <%= review.user.reviews.count %> reviews
+        </span>
     </div>
-</section>
+    </div>
+    <div class="container-review">
+      <div class="img-fluid">
+        <% album = RSpotify::Album.find(review.spotify_item_id) %>
+        <%= link_to album_path(review.spotify_item_id) do %>
+          <%= image_tag album.images.first['url'] %>
+        <% end %>
+      </div>
+      <div class="user-review">
+      <div class="review-rating">
+        <h3><%= review.rating %>/10</h3>
+      </div>
+        <div class="review-content" style="italic">
+          <p>"<%= review.content %>"</p>
+        </div>
+        </div>
+    </div>
+    <div class="social-button">
+    <% liked_review = Like.find_by(user: current_user, review_id: review.id) %>
+          <% if liked_review %>
+            <%= link_to 'Unlike', like_path(Like.find_by(user: current_user, review_id: review.id)),
+              data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to unlike this review?" },
+              class: 'btn btn-warning btn-sm me-2' %>
+          <% else %>
+            <%= simple_form_for Like.new, url: review_likes_path(review_id: review.id), method: :post do |f| %>
+              <%= f.hidden_field :review_id, value: review.id %>
+              <%= f.submit "Like", class: 'btn btn-primary btn-sm me-2' %>
+            <% end %>
+          <% end %>
+          <span><%= review.likes_count %> likes</span>
+    </div>
+  </div>
+<% end %>
+  
+  </div>
+</div>
