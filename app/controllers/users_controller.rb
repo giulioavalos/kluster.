@@ -28,6 +28,9 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @reviews = @user.reviews
+  rescue ActiveRecord::RecordNotFound
+    # User not found, redirect to 404 page
+    render file: "#{Rails.root}/public/404.html", layout: 'application', status: :not_found
   end
 
   def profile
@@ -43,6 +46,22 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
+  def edit
+    @user = User.find(params[:id])
+    if current_user != @user
+      redirect_to root_path, alert: "You are not authorized to edit this profile."
+    end
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      redirect_to user_profile_path(@user), notice: 'User was successfully updated.'
+    else
+      render :edit
+    end
+  end
+
   def follow(user)
     followed << user unless self == user || followed.include?(user)
   end
@@ -54,4 +73,12 @@ class UsersController < ApplicationController
   def following?(user)
     followed.include?(user)
   end
+end
+
+
+private
+
+
+def user_params
+  params.require(:user).permit(:name, :email, :birthdate, :country, :avatar)
 end

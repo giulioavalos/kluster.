@@ -11,6 +11,9 @@ class AlbumsController < ApplicationController
     @album = RSpotify::Album.find(params[:id])
     @tracks = @album.tracks
     @review = Review.new
+    @album_image = @album.images.first['url']
+  rescue RestClient::BadRequest
+    render file: "#{Rails.root}/public/404.html", layout: 'application', status: :not_found
   end
 
   private

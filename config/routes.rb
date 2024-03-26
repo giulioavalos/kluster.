@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   get '/users/:id', to: 'users#show', as: 'user_profile'
   post '/followings', to: 'followings#create', as: 'followings'
   delete 'followings/:id', to: 'followings#destroy', as: 'following'
+  get 'users/:id/edit', to: 'users#edit', as: 'edit_user'
+  patch '/users/:id', to: 'users#update', as: 'update_user'
+  patch 'users/:id', to: 'users#update'
+
   root to: "pages#home"
 
   get '/search', to: 'pages#search', as: 'search'
@@ -12,7 +16,7 @@ Rails.application.routes.draw do
     resources :favorites, only: [:create]
   end
 
-  resources :reviews, except: [:create] do
+  resources :reviews, except: [:create, :destroy] do
     resources :likes, only: [:create]
   end
 
@@ -32,4 +36,6 @@ Rails.application.routes.draw do
 
   # Health check route
   get "up" => "rails/health#show", as: :rails_health_check
+
+  get '*path', to: 'application#not_found'
 end

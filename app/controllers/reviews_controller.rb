@@ -14,6 +14,8 @@ class ReviewsController < ApplicationController
   end
 
   def show
+  rescue ActiveRecord::RecordNotFound
+    render file: "#{Rails.root}/public/404.html", layout: 'application', status: :not_found
   end
 
   def edit
