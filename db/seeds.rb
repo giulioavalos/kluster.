@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-=======
+
 # Destroy existing records
 Favorite.destroy_all
 Like.destroy_all
@@ -39,4 +38,3 @@ review4.update(spotify_item_id: spotify_album_ids.sample, spotify_item_type: 'al
 review5.update(spotify_item_id: spotify_album_ids.sample, spotify_item_type: 'album')
 
 puts "Seeded!"
->>>>>>> 16f4948b9c4d183e7070370a478f372818bb8dfc
