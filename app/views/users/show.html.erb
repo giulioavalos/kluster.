@@ -38,18 +38,25 @@
     </div>
   </div>
 
-<div class="fav">
-  <h2><%= @user.name %>'s stats</h2>
-  <div class="fav-info">
-    <h4> Favorite Albums </h4>
+<h2><%= @user.name %>'s stats</h2>
+
+<div class="favorite-container">
+  <div class="favorite-album">
+    <div class="fav-title">
+    <h4> Favorite Albums and Artists </h4>
+    </div>
+    <% if @user.favorites.any? %>
+    <div class="fav-card">
     <%= render "shared/fav_card" %>
+    </div>
+    <% else %>
+      <h5>No favorites to display. Try adding a few and come back later.</h5>
+    <% end %>
   </div>
-  <h4> Favorite Artists </h4>
-  <%= render "shared/fav_card_artist" %>
 </div>
 
 <div class="container-review">
-  <h4><%= @user.name %>'s reviews</h2>
+  <h2><%= @user.name %>'s reviews</h2>
     <div class="review-info">
       <% @reviews.each do |review| %>
         <%= render partial: 'reviews/review_card' %>
