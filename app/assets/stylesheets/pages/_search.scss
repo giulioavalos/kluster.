@@ -36,20 +36,19 @@
   overflow: hidden;
   background-color: white;
   color: #824d85d1;
-  padding: 8px 12px;
+  padding: 8px 8px;
   border-radius: 20px;
   transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-  margin-bottom: 10px; /* Adjust the margin to create space between cards */
+  margin-bottom: 20px; /* Adjust the margin to create space between cards */
   margin-right: 20px; /* Adjust the margin between cards */
   width: 100%;
 
   .artist-image {
     border-radius: 13.5px;
-    position: center;
-    display: block;
-    width: 275px; /* Set the width to 275 pixels */
-    height: 275px; /* Set the height to 275 pixels */
-    object-fit: cover;
+    width: auto; // Maintains the image's aspect ratio
+    max-width: 100%; // Ensures the image is not wider than the card
+    max-height: 100%; // Ensures the image is not taller than the card
+    margin: auto; // This will center the image within the card
     }
 
   .artist-name {
