@@ -28,13 +28,13 @@
   </div>
 </div>
 
-    <div class="card-header">Albums</div>
+<div class="card-header">Albums</div>
 
-  <div class="albums-container container">
+  <div class="albums-container">
     <% if @albums.any? %>
       <div class="album-card-body row">
         <% @albums.each do |album| %>
-          <div class="album-card d-flex">
+          <div class="album-card">
             <% if album.images.present? %>
               <%= link_to album_path(id: album.id), class: "album-link" do %>
                 <%= image_tag album.images.first["url"], class: "album-image" %>

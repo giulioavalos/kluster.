@@ -21,6 +21,7 @@
   position: center;
   padding: 5px 10px;
   background-color: #824d85d1; /* Adjust the opacity as needed */
+  border-radius: 10px;
   margin-bottom: 15px;
   color: rgb(255, 255, 255); /* Adjust the text color as needed */
 }
@@ -78,23 +79,32 @@
 }
 
 // ALBUMS
+
 .albums-container {
   text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
 
   .album-card-body {
+    text-align: center;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 0 20px; /* Add padding to align with the rest of the content */
+    flex-direction: row;
+    margin: 20px;
+    justify-content: space-between;
+    padding: 20px 20px;
+    max-width: 1200px;
 
     .album-card {
-      width: auto;
+      width: 100px;
+      height: 100px;
       margin-bottom: 20px;
       background-color: white;
       color: #824d85d1; /* Purple font color */
       padding: 10px;
       border-radius: 10px;
-      display: flex; /* Use flexbox for two-column layout */
+      display: flex;
+      flex-direction: row;
 
       .album-image {
         width: 100%;
@@ -156,6 +166,11 @@
 
 .user-name {
   text-decoration: none;
+  background-color: #824d85d1;
+  color: #ffffffd1;
+  padding: 8px 16px;
+  border-radius: 20px;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
 
 .user-avatar {
