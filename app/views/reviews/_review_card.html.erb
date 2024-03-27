@@ -15,9 +15,8 @@
     </div>
     <div class="container-review">
       <div class="img-fluid">
-        <% album = RSpotify::Album.find(review.spotify_item_id) %>
         <%= link_to album_path(review.spotify_item_id) do %>
-          <%= image_tag album.images.first['url'] %>
+          <%= image_tag review.image if review.image %>
         <% end %>
       </div>
       <div class="user-review">

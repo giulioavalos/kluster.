@@ -1,0 +1,18 @@
+<#% recommendations = RSpotify::Recommendations.generate(seed_genres: ['techno']).tracks.first(5)%>
+<#% @reco = recommendations.tracks.first(10) %>
+<#% @reco.each do |reco| %>
+    <div class="reco-card">
+      <div class="reco-card-img">
+        <%#= image_tag reco.album.images.first['url'] %>
+      </div>
+      <div class="reco-card-info">
+        <h3><%#= reco.album %></h3>
+        <p><%# reco.artists.each do |a| %>
+          <p><%#=  a.name  %></p>
+          <#% end %>
+          </p>
+      </div>
+    </div>
+  </div>
+</div>
+<#% end %>

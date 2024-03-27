@@ -16,9 +16,10 @@ class AlbumsController < ApplicationController
     render file: "#{Rails.root}/public/404.html", layout: 'application', status: :not_found
   end
 
-  def recommendation
-    @recommendations = RSpotify::Recommendations.generate(seed_tracks: my_fav_albums.map(@user.id))
-  end
+  #def recommendation
+    #@recommendations = RSpotify::Recommendations.generate(seed_tracks: my_fav_albums.map(@user.id))
+    #@recommendations = @recommendations.tracks.first(10)
+  #end
 
   private
 
