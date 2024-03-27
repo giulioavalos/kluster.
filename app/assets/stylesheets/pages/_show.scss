@@ -45,6 +45,20 @@
   margin-bottom: 16px;
 }
 
+.container-review {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 10px;
+}
+
+.container-review h2 {
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+  padding: 0;
+}
 .review-info {
   display: flex;
   flex-direction: column;
