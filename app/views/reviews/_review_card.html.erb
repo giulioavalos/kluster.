@@ -11,15 +11,15 @@
     <div class="container-review">
       <div class="box col-4">
         <div class="img-fluid">
-          <% album = RSpotify::Album.find(review.spotify_item_id) %>
+         <!-- <% album = RSpotify::Album.find(review.spotify_item_id) %>
           <%= link_to album_path(review.spotify_item_id) do %>
             <%= image_tag album.images.first['url'] %>
-          <% end %>
+          <% end %>-->
         </div>
       </div>
-      <div class="box-info">
+     <div class="box-info">
         <div class="box-info-1">
-          <h3><%= review.rating %>/10</h3>
+          <%# <h3><%= review.rating %>/10</h3> %>
         </div>
         <div class="box-info-2 font-italic">
           <p>"<%= review.content %>"</p>
@@ -32,3 +32,4 @@
     </div>
   </div>
 <% end %>
+

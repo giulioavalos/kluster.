@@ -1,35 +1,74 @@
-<!-- app/views/artists/show.html.erb -->
-<h1><%= @artist.name %></h1>
+<div class="d-flex align-items">
+  <h1><%= @artist.name %> -> </h1>
+     <h1> <ul class="horizontal-list margin-to-title">
+        <% @artist.genres.each do |genre| %>
+          <li><%= genre.capitalize %></li>
+        <% end %>
+          </ul>
+      </h1>
+</div>
 
-<% if @artist.images.any? %>
-  <%= image_tag @artist.images.first["url"], class: "artist-image" %>
-<% end %>
-<% if Favorite.find_by(user: current_user, spotify_item_id: @artist.id).present? %>
-  <%= link_to 'Remove from Favorites', favorite_path(Favorite.find_by(user: current_user, spotify_item_id: @artist.id)), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'btn btn-warning' %>
-<% else %>
-  <%= simple_form_for Favorite.new, url: artist_favorites_url(@artist.id) do |f| %>
-    <%= f.submit "Add as favorite" %>
-  <% end %>
-<% end %>
-<h2>Most Popular Tracks (Worldwide):</h2>
-<ul>
-  <% @artist.top_tracks(:US).first(5).each do |track| %>
-    <li><%= track.name %></li>
-  <% end %>
-</ul>
+<!-- Contenu principal de l'artiste -->
+<div data-controller="review-form">
+<div class="artist-content">
+  <div class="artist-image-favorites">
+    <% if @artist.images.any? %>
+      <%= image_tag @artist.images.first["url"], class: "artist-image" %>
+    <% end %>
+<div class="favorite-button">
+    <% if Favorite.find_by(user: current_user, spotify_item_id: @artist.id).present? %>
+      <%= link_to 'Remove from Favorites', favorite_path(Favorite.find_by(user: current_user, spotify_item_id: @artist.id)), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'btn btn-warning' %>
+    <% else %>
+      <%= simple_form_for Favorite.new, url: artist_favorites_url(@artist.id) do |f| %>
+        <%= f.submit "Add as favorite", class: 'btn btn-primary favorite' %>
+      <% end %>
+    <% end %>
+    </div>
+    <div>
+      <button class='btn btn-primary' data-action="click->review-form#displayForm" id='open-review-form'>Leave a review</button>
 
-<h2>Albums:</h2>
-<ul>
-  <% @artist.albums.first(5).each do |album| %>
-    <li><%= link_to album.name, album_path(album.id) %></li>
-  <% end %>
-  <%= link_to "See More", "/", class: "btn btn-primary" %>
-</ul>
 
-<h2>Genres:</h2>
-<ul>
-  <% @artist.genres.each do |genre| %>
-    <li><%= genre %></li>
-  <% end %>
-</ul>
-    <%#= render 'reviews/form', review: @review, type: "artist" %>
+    </div>
+  </div>
+
+<div class="artist-info">
+  <div class="artist-tracks-albums">
+    <!-- Morceaux les plus populaires -->
+    <div class="most-popular-tracks">
+      <h2>Most Popular Tracks (Worldwide):</h2>
+      <ul class="margin-tracks">
+        <% @artist.top_tracks(:US).first(5).each do |track| %>
+          <li><%= track.name %></li>
+        <% end %>
+      </ul>
+    </div>
+
+    <!-- Albums de l'artiste -->
+     <div class="artist-albums">
+      <h2 class="album-title-margin">Albums:</h2>
+      <div class="albums-container">
+        <% half_size = (@artist.albums.size / 2.0).ceil %>
+        <ol class="album-list">
+          <% @artist.albums.first(half_size).each do |album| %>
+            <li><%= link_to album.name, album_path(album.id) %></li>
+          <% end %>
+        </ol>
+        <ol class="album-list" start="<%= half_size + 1 %>">
+          <% @artist.albums.last(@artist.albums.size - half_size).each do |album| %>
+            <li><%= link_to album.name, album_path(album.id) %></li>
+          <% end %>
+        </ol>
+      </div>
+
+
+    </div>
+
+
+  </div>
+  </div>
+
+  </div>
+  <div id="review-form-container" class="mt-3" data-review-form-target="form">
+    <%= render 'reviews/form', review: @review, type: "artist" %>
+  </div>
+</div>

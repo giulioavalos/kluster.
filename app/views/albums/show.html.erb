@@ -26,7 +26,6 @@
               <% end %>
             </div>
           </div>
-
           <div class="col-md-8 tracks-margin">
             <div class="row">
               <h2>Tracks</h2>
@@ -68,7 +67,7 @@
                 </div>
               </div>
 
- <div class="d-flex align-items-center like-margin">
+            <div class="d-flex align-items-center like-margin">
               <% liked_review = Like.find_by(user: current_user, review_id: review.id) %>
               <% if liked_review %>
                 <%= link_to 'Unlike', like_path(Like.find_by(user: current_user, review_id: review.id)),
@@ -84,9 +83,7 @@
             </div>
 
               </div>
-              <div class="review-rating mb-2">
-              </div>
-              <p class="review-text"><%= review.content %></p>
+              <p class="review-text"><%= review.content %> <i>(<%= review.rating %>/10)</i></p>
               <div class="review-footer">
                 <span class="text-muted"><%= review.created_at.strftime("%d %B %Y") %></span>
               </div>
