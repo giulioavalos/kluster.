@@ -4,12 +4,11 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     if review_params[:spotify_item_type] == "artist"
-      @review_api = RSpotify::Artist.find(@review.spotify_item_id)
+      @spotify_api = RSpotify::Artist.find(@review.spotify_item_id)
     else
-      @review_api = RSpotify::Album.find(@review.spotify_item_id)
+      @spotify_api = RSpotify::Album.find(@review.spotify_item_id)
     end
-    # TODO: REVISAR EL CÓDIGO DE GREG
-    @review.image = @review_api.images.first['url']
+    @review.image = @spotify_api.images.first['url']
     @review.user = current_user
     respond_to do |format|
       if @review.save!

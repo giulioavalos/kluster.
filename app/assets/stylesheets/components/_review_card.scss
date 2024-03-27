@@ -1,11 +1,3 @@
-body {
-  font-family: 'Poppins', sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #000000;
-  color: #ffffff;
-}
-
 .review-card {
   background-color: #323334;
   padding: 20px;
@@ -16,7 +8,7 @@ body {
   max-width: 500px;
   margin: 30px;
 
-  .container-user {
+  .profile-container {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -30,24 +22,24 @@ body {
     object-fit: cover;
   }
 
-  .row {
+  .profile-info {
     display: flex;
     flex-direction: column;
     margin-left: 10px;
     align-items: center;
   }
 
-  .row span {
+  .profile-info span {
     font-size: 0.9em;
     margin: 0;
     margin-top: 5px;
   }
 
-  .container-user .mr-2 {
+  .profile-container .mr-2 {
     margin-right: 10px;
   }
 
-  .container-review {
+  .review-container {
     display: flex;
     flex-direction: row;
     margin-bottom: 10px;
@@ -56,7 +48,7 @@ body {
     padding: 10px;
   }
 
-  .container-review img {
+  .review-container img {
     width: 200px;
     height: 200px;
     border-radius: 10px;
@@ -64,15 +56,20 @@ body {
     position: relative;
   }
 
-  .review-content {
-    font-style: italic;
-    flex-wrap: wrap;;
-  }
-
   .user-review {
     display: flex;
     flex-direction: column;
     margin-left: 10px;
+  }
+
+  .review-rating {
+    font-style: italic;
+    flex-wrap: wrap;;
+  }
+
+  .review-content {
+    font-style: italic;
+    flex-wrap: wrap;;
   }
 
   .social-button {
@@ -82,8 +79,10 @@ body {
     margin-top: 10px;
   }
 
-  button {
+  .social-button button {
     background-color: #ffffff00;
+    width: 20px;
+    height: 20px;
     color: #000000;
     border: none;
     padding: 10px;
