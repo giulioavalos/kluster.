@@ -45,6 +45,18 @@
   margin-bottom: 16px;
 }
 
+.favorites {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.favorites-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
 .container-review {
   display: flex;
   flex-direction: column;

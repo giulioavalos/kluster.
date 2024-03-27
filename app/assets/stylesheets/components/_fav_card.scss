@@ -1,7 +1,15 @@
-.favourite-card {
+.favorite-card {
+  display: flex;
+  flex-direction: row;
+  border-radius: 12px;
+  margin: 20px;
+  flex-wrap: wrap;
+  background-color: #503E54;
 
-  .image {
-    max-width: 100px;
-    max-height: 100px;
+  .image img {
+    max-width: 200px;
+    max-height: 200px;
+    justify-content: center;
+    margin: 20px;
   }
 }

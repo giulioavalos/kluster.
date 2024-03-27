@@ -1,9 +1,8 @@
-<div class="favourite-card">
-  <div class="image">
-    <%= image_tag user.reviews.image %>
-  </div>
-  <div class="content">
-    <h3><%#= favourite.title %></h3>
-    <p><%#= favourite.description %></p>
-  </div>
-</div>
+<% @user.favorites.each do |favorite| %>
+  <div class="favorite-card">
+    <div class="image">
+      <%= link_to  album_path(favorite.spotify_item_id) do %>
+        <%= image_tag favorite.image %>
+      <% end %>
+    </div>
+<% end %>

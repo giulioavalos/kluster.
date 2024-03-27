@@ -4,7 +4,7 @@
       <% if @user.avatar.present? %>
         <%= image_tag @user.avatar, alt: "User Avatar" %>
       <% else %>
-        <p>No avatar</p>
+        <%= image_tag 'default_user_icon.jpg', class: 'user-avatar' %>
       <% end %>
     </div>
 
@@ -35,13 +35,13 @@
           <% end %>
         <% end %>
       </div>
-    </div>
+  </div>
   </div>
 
-<div class="favourites">
+<div class="favorites">
   <h2><%= @user.name %>'s favourites</h2>
-  <% raise %>
-  <div class="favourites-info">
+  <div class="favorites-info">
+    <%= render "shared/fav_card" %>
   </div>
 </div>
 
@@ -54,3 +54,4 @@
     </div>
   </div>
 </div>
+<%= console %>
