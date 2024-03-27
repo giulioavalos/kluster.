@@ -34,15 +34,23 @@
             <%= button_to 'Follow', followings_path(followed_user_id: @user.id), method: :post %>
           <% end %>
         <% end %>
-        </div>
       </div>
     </div>
   </div>
-<div class="container-review">
 
-  <h2><%= @user.name %>'s reviews</h2>
-  <div class="review-info">
-    <% @reviews.each do |review| %>
-      <%= render partial: 'reviews/review_card' %>
-</div>  <% end %>
+<div class="favourites">
+  <h2><%= @user.name %>'s favourites</h2>
+  <% raise %>
+  <div class="favourites-info">
+  </div>
+</div>
+
+  <div class="container-review">
+    <h2><%= @user.name %>'s reviews</h2>
+    <div class="review-info">
+      <% @reviews.each do |review| %>
+        <%= render partial: 'reviews/review_card' %>
+      <% end %>
+    </div>
+  </div>
 </div>
