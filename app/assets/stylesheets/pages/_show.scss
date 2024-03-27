@@ -45,13 +45,21 @@
   margin-bottom: 16px;
 }
 
-.favorites {
+.fav {
   display: flex;
   flex-direction: column;
-
+  justify-content: center;
+  margin: 10px;
+}
+.fav h2 {
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+  padding: 0;
 }
 
-.favorites-info {
+.fav-info {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;

@@ -35,18 +35,21 @@
           <% end %>
         <% end %>
       </div>
-  </div>
+    </div>
   </div>
 
-<div class="favorites">
-  <h2><%= @user.name %>'s favourites</h2>
-  <div class="favorites-info">
+<div class="fav">
+  <h2><%= @user.name %>'s stats</h2>
+  <div class="fav-info">
+    <h4> Favorite Albums </h4>
     <%= render "shared/fav_card" %>
   </div>
+  <h4> Favorite Artists </h4>
+  <%= render "shared/fav_card_artist" %>
 </div>
 
-  <div class="container-review">
-    <h2><%= @user.name %>'s reviews</h2>
+<div class="container-review">
+  <h4><%= @user.name %>'s reviews</h2>
     <div class="review-info">
       <% @reviews.each do |review| %>
         <%= render partial: 'reviews/review_card' %>

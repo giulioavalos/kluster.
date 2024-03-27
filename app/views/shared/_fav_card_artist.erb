@@ -1,4 +1,4 @@
-<% if @user.favorites.pluck('spotify_item_type') == 'Album' %>
+<% if @user.favorites.pluck('spotify_item_type') == 'Artist' %>
 <% @user.favorites.each do |favorite| %>
   <div class="favorite-card">
     <div class="image">
@@ -6,6 +6,6 @@
         <%= image_tag favorite.image %>
       <% end %>
     </div>
-</div>
-<% end %>
+  </div>
+  <% end %>
 <% end %>
