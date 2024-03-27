@@ -4,7 +4,7 @@
       <% if @user.avatar.present? %>
         <%= image_tag @user.avatar, alt: "User Avatar" %>
       <% else %>
-        <p>No avatar</p>
+        <%= image_tag 'default_user_icon.jpg', class: 'user-avatar' %>
       <% end %>
     </div>
 
@@ -34,60 +34,34 @@
             <%= button_to 'Follow', followings_path(followed_user_id: @user.id), method: :post %>
           <% end %>
         <% end %>
-        </div>
       </div>
     </div>
   </div>
 
-  <div class="review-info">
-    <h2><%= @user.name %>'s reviews</h2>
-    <% @reviews.each do |review| %>
-  <div class="review-card">
-    <div class="container-user <%= (params[:controller] == 'users' && params[:action] == 'show') ? 'd-none' : '' %>">
-      <%= link_to user_profile_path(review.user) do %>
-        <p class="avatar"><%= image_tag review.user.avatar %></p>
-      <% end %>
-      <div class="row">
-        <%= link_to user_profile_path(review.user) do %>
-        <strong class="mr-2" style="color: white"><%= review.user.name %></strong>
-        <% end %>
-        <span class="review-info text-white">
-        <%= Following.where(followed_user_id: review.user).count %> followers <%= review.user.reviews.count %> reviews
-        </span>
-    </div>
-    </div>
-    <div class="container-review">
-      <div class="img-fluid">
-        <%= link_to album_path(review.spotify_item_id) do %>
-          <%= image_tag review.image %>
-        <% end %>
-      </div>
-      <div class="user-review">
-      <div class="review-rating">
-        <h3><%= review.rating %>/10</h3>
-      </div>
-        <div class="review-content" style="italic">
-          <p>"<%= review.content %>"</p>
-        </div>
-        </div>
-    </div>
-    <div class="social-button">
-    <% liked_review = Like.find_by(user: current_user, review_id: review.id) %>
-      <% if liked_review %>
-        <%= link_to like_path(Like.find_by(user: current_user, review_id: review.id)),
-          data: {turbo_method: :delete } do %>
-          <i class="fa-solid fa-heart"></i>
-        <% end %>
-      <% else %>
-        <%= simple_form_for Like.new, url: review_likes_path(review_id: review.id), method: :post do |f| %>
-          <%= f.hidden_field :review_id, value: review.id %>
-          <button type="submit" name="commit" value="" data-disable-with="" aria-hidden="true" control-id="ControlID-3"><i class="fa-regular fa-heart"></i></button>
-        <% end %>
-      <% end %>
-      <span><%= review.likes_count %> likes</span>
-    </div>
-  </div>
-<% end %>
+<h2><%= @user.name %>'s stats</h2>
 
+<div class="favorite-container">
+  <div class="favorite-album">
+    <div class="fav-title">
+    <h4> Favorite Albums and Artists </h4>
+    </div>
+    <% if @user.favorites.any? %>
+    <div class="fav-card">
+    <%= render "shared/fav_card" %>
+    </div>
+    <% else %>
+      <h5>No favorites to display. Try adding a few and come back later.</h5>
+    <% end %>
   </div>
 </div>
+
+<div class="container-review">
+  <h2><%= @user.name %>'s reviews</h2>
+    <div class="review-info">
+      <% @reviews.each do |review| %>
+        <%= render partial: 'reviews/review_card' %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<%= console %>

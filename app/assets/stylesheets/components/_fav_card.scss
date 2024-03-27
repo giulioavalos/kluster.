@@ -1,0 +1,15 @@
+.favorite-card {
+  display: flex;
+  flex-direction: row;
+  border-radius: 12px;
+  margin: 20px;
+  flex-wrap: wrap;
+  background-color: #503E54;
+
+  .image img {
+    max-width: 200px;
+    max-height: 200px;
+    justify-content: center;
+    margin: 20px;
+  }
+}

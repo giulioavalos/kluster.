@@ -1,6 +1,16 @@
-.feed{
+.main {
   display: flex;
   flex-direction: column;
-  margin-block-start: auto;
   align-items: center;
+  margin-left: 100px;
+  margin-right: 100px;
+
+  .feed {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-block-start: auto;
+    justify-content: space-between;
+    padding: auto;
+  }
 }
