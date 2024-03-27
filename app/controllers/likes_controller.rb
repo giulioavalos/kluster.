@@ -6,9 +6,9 @@ class LikesController < ApplicationController
     @like.review = Review.find(params[:review_id])
     @like.user = current_user
     @album = Review.find(params[:review_id]).spotify_item_id
-      if @like.save
-        redirect_to album_path(@album)
-      end
+    if @like.save
+      redirect_to album_path(@album)
+    end
   end
 
   def destroy

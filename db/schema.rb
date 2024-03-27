@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_25_153417) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_26_220256) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -73,6 +73,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_25_153417) do
     t.string "spotify_item_id"
     t.string "spotify_item_type"
     t.integer "likes_count", default: 0, null: false
+    t.string "image"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
