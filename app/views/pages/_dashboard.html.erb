@@ -1,6 +1,10 @@
 <div class="main">
   <div class="feed">
+    <% if @reviews.any? %>
       <%= render 'reviews/review_card' %>
-  </div>
+    <% else %>
+      <%= image_tag 'empty_feed.png', alt: 'Empty feed', style: 'width: 20%;' %>
+      <p>This feed is empty. Find users to follow in search!</p>
+    <% end %>
   </div>
 </div>

@@ -3,6 +3,8 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.new(review_params)
+    @review_api = RSpotify::Album.find(@review.spotify_item_id)
+    @review.image = @review_api.images.first['url']
     @review.user = current_user
     respond_to do |format|
       if @review.save!
@@ -45,6 +47,6 @@ class ReviewsController < ApplicationController
   end
 
   def review_params
-    params.require(:review).permit(:rating, :content, :spotify_item_id, :spotify_item_type)
+    params.require(:review).permit(:rating, :content, :spotify_item_id, :spotify_item_type, )
   end
 end

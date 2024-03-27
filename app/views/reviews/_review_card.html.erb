@@ -1,35 +1,47 @@
 <% @reviews.each do |review| %>
-  <div class="review-card col-6">
-    <div class="user-info">
+  <div class="review-card">
+    <div class="container-user <%= (params[:controller] == 'users' && params[:action] == 'show') ? 'd-none' : '' %>">
       <%= link_to user_profile_path(review.user) do %>
         <p class="avatar"><%= image_tag review.user.avatar %></p>
       <% end %>
-       <%= link_to user_profile_path(review.user) do %>
-        <h2><%= review.user.name %></h2>
+      <div class="row">
+        <%= link_to user_profile_path(review.user) do %>
+        <strong class="mr-2" style="color: white"><%= review.user.name %></strong>
         <% end %>
+        <span class="review-info text-white">
+        <%= Following.where(followed_user_id: review.user).count %> followers <%= review.user.reviews.count %> reviews
+        </span>
+    </div>
     </div>
     <div class="container-review">
-      <div class="box col-4">
-        <div class="img-fluid">
-         <!-- <% album = RSpotify::Album.find(review.spotify_item_id) %>
-          <%= link_to album_path(review.spotify_item_id) do %>
-            <%= image_tag album.images.first['url'] %>
-          <% end %>-->
-        </div>
+      <div class="img-fluid">
+        <%= link_to album_path(review.spotify_item_id) do %>
+          <%= image_tag review.image if review.image %>
+        <% end %>
       </div>
-     <div class="box-info">
-        <div class="box-info-1">
-          <%# <h3><%= review.rating %>/10</h3> %>
-        </div>
-        <div class="box-info-2 font-italic">
+      <div class="user-review">
+      <div class="review-rating">
+        <h3><%= review.rating %>/10</h3>
+      </div>
+        <div class="review-content" style="italic">
           <p>"<%= review.content %>"</p>
         </div>
-      </div>
+        </div>
     </div>
-    <div class="container-social">
-      <p><%=  %> likes</p>
-      <p><%=  %> comments</p>
+    <div class="social-button">
+      <% liked_review = Like.find_by(user: current_user, review_id: review.id) %>
+      <% if liked_review %>
+        <%= link_to like_path(Like.find_by(user: current_user, review_id: review.id)),
+          data: {turbo_method: :delete } do %>
+          <i class="fa-solid fa-heart"></i>
+        <% end %>
+      <% else %>
+        <%= simple_form_for Like.new, url: review_likes_path(review_id: review.id), method: :post do |f| %>
+          <%= f.hidden_field :review_id, value: review.id %>
+          <button type="submit" name="commit" value="" data-disable-with="" aria-hidden="true" control-id="ControlID-3"><i class="fa-regular fa-heart"></i></button>
+        <% end %>
+      <% end %>
+      <span><%= review.likes_count %> likes</span>
     </div>
   </div>
 <% end %>
-
