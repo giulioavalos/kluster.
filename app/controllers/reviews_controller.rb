@@ -47,6 +47,6 @@ class ReviewsController < ApplicationController
   end
 
   def review_params
-    params.require(:review).permit(:rating, :content, :spotify_item_id, :spotify_item_type, )
+    params.require(:review).permit(:rating, :content, :spotify_item_id, :spotify_item_type)
   end
 end
