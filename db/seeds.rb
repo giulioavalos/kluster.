@@ -1,3 +1,4 @@
+
 # Destroy existing records
 Favorite.destroy_all
 Like.destroy_all
