@@ -4,6 +4,7 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     @review_api = RSpotify::Album.find(@review.spotify_item_id)
+    #TODO: REVISAR EL CÓDIGO DE GREG 
     @review.image = @review_api.images.first['url']
     @review.user = current_user
     respond_to do |format|
