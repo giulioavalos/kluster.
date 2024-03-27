@@ -1,6 +1,8 @@
 class PagesController < ApplicationController
   def home
-    @reviews = Review.where(user: User.where(id: Following.where(follower_id: current_user.id).map{ |f| f.followed_user_id }))
+    if current_user
+      @reviews = Review.where(user: User.where(id: Following.where(follower_id: current_user.id).map{ |f| f.followed_user_id }))
+    end
   end
 
   def search

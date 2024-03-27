@@ -28,42 +28,34 @@
   </div>
 </div>
 
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-10">
-      <div class="card-header">Albums</div>
-      <% if @albums.any? %>
-        <div class="albums-container">
-          <div class="card">
+    <div class="card-header">Albums</div>
 
-            <div class="card-body">
-              <% @albums.each do |album| %>
-                <div class="tweet">
-                  <div class="tweet-left">
-                    <% if album.images.present? %>
-                      <%= link_to album_path(id: album.id), class: "album-link" do %>
-                        <%= image_tag album.images.first["url"], class: "tweet-image" %>
-                      <% end %>
-                    <% end %>
-                  </div>
-                  <div class="tweet-right">
-                    <h1><%= album.name %></h1>
-                    <h2><%= album.artists.map(&:name).join(', ') %></h2>
-                    <ul>
-                      <% album.tracks.first(5).each do |track| %>
-                        <li><%= track.name %></li>
-                      <% end %>
-                    </ul>
-                  </div>
-                </div>
+  <div class="albums-container container">
+    <% if @albums.any? %>
+      <div class="album-card-body row">
+        <% @albums.each do |album| %>
+          <div class="album-card d-flex">
+            <% if album.images.present? %>
+              <%= link_to album_path(id: album.id), class: "album-link" do %>
+                <%= image_tag album.images.first["url"], class: "album-image" %>
               <% end %>
+            <% end %>
+            <div class="album-details">
+              <h1><%= album.name %></h1>
+              <h2><%= album.artists.map(&:name).join(', ') %></h2>
+              <ul>
+                <% album.tracks.first(5).each do |track| %>
+                  <li><%= track.name %></li>
+                <% end %>
+              </ul>
             </div>
           </div>
-        </div>
-      <% end %>
-    </div>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 </div>
+
 
 <div class="container">
   <div class="row justify-content-center">
@@ -87,3 +79,18 @@
     </div>
   </div>
 </div>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const showMoreButton = document.getElementById("show-more-button");
+    const hiddenArtists = document.getElementById("hidden-artists");
+
+    if (showMoreButton && hiddenArtists) {
+      showMoreButton.addEventListener("click", function() {
+        hiddenArtists.style.display = (hiddenArtists.style.display === "none") ? "block" : "none";
+        showMoreButton.innerText = (hiddenArtists.style.display === "none") ? "Show More" : "Show Less";
+      });
+    }
+  });
+</script>

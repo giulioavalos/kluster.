@@ -18,12 +18,14 @@
 .card-header {
   font-size: 32px;
   display: inline-block;
+  position: center;
   padding: 5px 10px;
   background-color: #824d85d1; /* Adjust the opacity as needed */
-  border-radius: 50%;
   margin-bottom: 15px;
   color: rgb(255, 255, 255); /* Adjust the text color as needed */
 }
+
+//ARTISTS
 
 .artists-container {
   display: flex;
@@ -75,76 +77,76 @@
   }
 }
 
+// ALBUMS
 .albums-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  text-align: center;
 
-  .album-card {
-    border-radius: 10px;
-    overflow: hidden;
-    background-color: white;
-    color: #824d85d1;
-    padding: 8px 8px;
-    border-radius: 20px;
-    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-    margin-bottom: 20px; /* Adjust the margin to create space between cards */
-    margin-right: 20px; /* Adjust the margin between cards */
-    width: calc(25% - 20px); /* 25% for 4 cards in a row, minus margin-right */
+  .album-card-body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0 20px; /* Add padding to align with the rest of the content */
 
-    &:last-child {
-      margin-right: 0; /* Remove margin for the last card in the row */
-    }
+    .album-card {
+      width: auto;
+      margin-bottom: 20px;
+      background-color: white;
+      color: #824d85d1; /* Purple font color */
+      padding: 10px;
+      border-radius: 10px;
+      display: flex; /* Use flexbox for two-column layout */
 
-    &:hover {
-      background-color: purple;
-      border-color: white;
-      color: white;
-    }
-
-    .album-photo {
-      width: 100%;
-      height: 200px; /* Adjust the height as needed */
-      overflow: hidden;
-
-      .album-link {
-        display: block;
+      .album-image {
         width: 100%;
-        height: 100%;
+        margin-right: 20px;
+        border-radius: 13.5px;
+      }
 
-        .album-image {
-          width: 100%;
-          height: 100%;
-          object-fit: cover; /* Ensure the image covers the container */
+      .album-details {
+        flex: 1; /* Take remaining space in the row */
+        display: flex;
+        flex-direction: column;
+
+        h1 {
+          font-size: 16px;
+          margin-bottom: 8px;
         }
-      }
-    }
 
-    .album-right {
-      padding: 8px;
-
-      h1 {
-        font-size: 24px;
-        margin-bottom: 8px;
-      }
-
-      h2 {
-        font-size: 16px;
-        margin-bottom: 8px;
-      }
-
-      ul {
-        list-style-type: none;
-        padding: 0;
+        h2 {
+          font-size: 10px;
+          margin-bottom: 8px;
+        }
 
         li {
-          font-size: 14px;
-          margin-bottom: 4px;
+          font-size: 6px;
+          margin-bottom: 8px;
+          text-decoration: none;
+          text-align: left;
         }
       }
+    }
+
+    &:last-child {
+      margin-right: 0;
     }
   }
 }
+
+.card-body {
+  flex: 0 0 calc(10 * 10%);
+  background-color: white;
+  color: #824d85d1; /* Purple font color */
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+
+//USERS
 
 .user-card {
   border-radius: 50%;
