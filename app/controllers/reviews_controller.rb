@@ -8,7 +8,11 @@ class ReviewsController < ApplicationController
     @review.user = current_user
     respond_to do |format|
       if @review.save!
-        format.html { redirect_to album_path(@review.spotify_item_id), notice: 'Review was successfully created.', anchor: "review_section" }
+        if @review.type == "artist"
+          format.html { redirect_to artist_path(@review.spotify_item_id), notice: 'Review was successfully created.', anchor: "review_section" }
+        else
+          format.html { redirect_to album_path(@review.spotify_item_id), notice: 'Review was successfully created.', anchor: "review_section" }
+        end
       else
         format.html { render :new }
       end
