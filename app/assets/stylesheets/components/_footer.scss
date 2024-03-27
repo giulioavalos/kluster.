@@ -1,31 +1,63 @@
 .footer {
-  background: #20101c;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 100px;
-  padding: 0px 50px;
-  color: rgb(216, 215, 215);
-}
+  flex-direction: column;
+  position: bottom;
 
-.footer-reviews p {
-  margin: 5px 0; /* Add a little space between each review */
-}
+  h4 {
+    margin: 0 10px;
+    font-weight: bolder;
+  }
 
-.footer-links {
-  display: flex;
-  align-items: center;
-}
-.footer-links a {
-  color: rgb(216, 215, 215);
-  opacity: 0.5;
-  text-decoration: none;
-  font-size: 24px;
-  padding: 0px 10px;
-}
-.footer-links a:hover {
-  opacity: 1;
-}
-.footer .fa-heart {
-  color: #eec0c0;
+  p {
+    margin: 0 10px;
+    font-weight: bold;
+  }
+
+  h4:hover {
+    color: #DB33D9;
+  }
+
+  p:hover {
+    color: #DB33D9;
+  }
+
+  .footer-links {
+    display: flex;
+    margin-left: 100px;
+    margin-right: 100px;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  .touch-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+    margin-top: 20px;
+    opacity: 40%;
+  }
+
+  .connect-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+    margin-top: 20px;
+    opacity: 40%;
+  }
+
+  .location-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+    margin-top: 20px;
+    opacity: 40%;
+  }
+
+  .footer-copyright {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    justify-content: center;
+    opacity: 20%;
+    position: bottom;
+  }
 }
