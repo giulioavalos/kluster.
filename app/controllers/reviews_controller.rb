@@ -2,8 +2,14 @@ class ReviewsController < ApplicationController
   before_action :set_review, only: %i[show edit update destroy]
 
   def create
+    item_id = params[:album_id] || params[:artist_id]
+    item_type = params[:album_id] ? 'Album' : 'Artist'
     @review = Review.new(review_params)
-    @review_api = RSpotify::Album.find(@review.spotify_item_id)
+    if item_type == 'Artist'
+      @review_api = RSpotify::Album.find(@review.spotify_item_id)
+    else item_type = 'Album'
+      @review_api = RSpotify::Artist.find(@review.spotify_item_id)
+    end
     @review.image = @review_api.images.first['url']
     @review.user = current_user
     respond_to do |format|

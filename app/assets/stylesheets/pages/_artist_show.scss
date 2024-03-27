@@ -3,6 +3,15 @@ ul.horizontal-list {
   padding: 0;
 }
 
+.margin-left-title{
+  margin-left: 30px;
+}
+
+.margin-button{
+  margin-left: 50px;
+    margin-top: 7px;
+}
+
 ul.horizontal-list li {
   display: inline-block;
   margin-right: 3px;
@@ -18,9 +27,10 @@ ul.horizontal-list li {
 
 .artist-image-favorites {
   background-color: rgba(222, 222, 222, 0.3);
-  margin-right: 50px;
+  margin-right: 35px;
   margin-left: 50px;
-  height: 440px;
+  height: 425px;
+  border-radius: 10px;
 }
 
 .artist-header {
@@ -28,14 +38,16 @@ ul.horizontal-list li {
   align-items: center;
 }
 
-.favorite-button{
-  margin-top: 25px;
+.favorite-button {
+  margin-top: 0px;
+  margin-left: -22px;
 }
 
 .artist-image {
   margin: 25px 18px;
   border-radius: 20px;
-  width: 300px
+  width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .artist-info {
@@ -58,16 +70,18 @@ ul.horizontal-list li {
 
 .artist-content {
   display: flex;
-  justify-content: space-between;
+  justify-content: revert-layer;
   margin-bottom: 30px;
+  margin-left: 30px;
 }
 
 .artist-tracks-albums {
   display: flex;
   flex-direction: column;
+  margin-left: 58px;
 }
 
-.albums-container {
+.albums-container-unique {
   display: flex;
   justify-content: space-between;
 }
