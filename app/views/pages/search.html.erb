@@ -1,19 +1,89 @@
-<h1>Search Results</h1>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-10">
+     <div class="card-header">Artists</div>
+      <% if @artists.any? %>
+        <div class="artists-container">
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <% @artists.each do |artist| %>
+                  <div class="col-4">
+                    <div class="artist-card">
+                      <% if artist.images.present? %>
+                        <%= link_to artist_path(id: artist.id), class: "artist-link" do %>
+                          <%= image_tag artist.images.first["url"], class: "artist-image" %>
+                        <% end %>
+                        <%= link_to artist.name, artist_path(id: artist.id), class: "artist-name" %>
+                      <% end %>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
 
-<% if @artists.any? %>
-  <h2>Artists</h2>
-  <ul>
-    <% @artists.each do |artist| %>
-      <li><%= artist.name %></li>
-    <% end %>
-  </ul>
-<% end %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-10">
+      <div class="card-header">Albums</div>
+      <% if @albums.any? %>
+        <div class="albums-container">
+          <div class="card">
 
-<% if @albums.any? %>
-  <h2>Albums</h2>
-  <ul>
-    <% @albums.each do |album| %>
-      <li><%= album.name %> by <%= album.artists.map(&:name).join(', ') %></li>
-    <% end %>
-  </ul>
-<% end %>
+            <div class="card-body">
+              <% @albums.each do |album| %>
+                <div class="tweet">
+                  <div class="tweet-left">
+                    <% if album.images.present? %>
+                      <%= link_to album_path(id: album.id), class: "album-link" do %>
+                        <%= image_tag album.images.first["url"], class: "tweet-image" %>
+                      <% end %>
+                    <% end %>
+                  </div>
+                  <div class="tweet-right">
+                    <h1><%= album.name %></h1>
+                    <h2><%= album.artists.map(&:name).join(', ') %></h2>
+                    <ul>
+                      <% album.tracks.first(5).each do |track| %>
+                        <li><%= track.name %></li>
+                      <% end %>
+                    </ul>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-10">
+                <div class="card-header">Users</div>
+      <% if @users.any? %>
+        <div class="users-container">
+          <div class="card">
+
+            <div class="card-body">
+              <% @users.each do |user| %>
+                <div class="user-card">
+                  <%= link_to user.name, user_profile_path(user), class: "user-name" %>
+                  <%= image_tag user.avatar, class: "user-avatar" %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

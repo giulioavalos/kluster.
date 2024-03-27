@@ -1,0 +1,111 @@
+.container {
+  text-align: center;
+
+}
+
+.card {
+  background-color: transparent;
+}
+
+.card-body {
+  background-color: transparent;
+  color: rgb(255, 255, 255);
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+}
+
+.card-header {
+  font-size: 32px;
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: #824d85d1; /* Adjust the opacity as needed */
+  border-radius: 50%;
+  margin-bottom: 15px;
+  color: rgb(255, 255, 255); /* Adjust the text color as needed */
+}
+
+.artists-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.artist-card {
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: white;
+  color: #824d85d1;
+  padding: 8px 12px;
+  border-radius: 20px;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  margin-bottom: 10px; /* Adjust the margin to create space between cards */
+  margin-right: 20px; /* Adjust the margin between cards */
+  width: 100%;
+
+  .artist-image {
+    border-radius: 13.5px;
+    position: center;
+    display: block;
+    width: 275px; /* Set the width to 275 pixels */
+    height: 275px; /* Set the height to 275 pixels */
+    object-fit: cover;
+    }
+
+  .artist-name {
+    display: block;
+    clear: left; /* Clear the float */
+    text-decoration: none;
+    color: #4d8561d1;
+    padding: 8px 16px;
+    border-radius: 20px;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  }
+}
+
+.artist-card:last-child {
+  margin-right: 0; /* Remove margin for the last card in the row */
+}
+
+.artist-card:hover {
+  background-color: purple;
+  border-color: white;
+  color: white;
+  .artist-name {
+    color: white;
+  }
+}
+
+.tweet {
+  display: flex;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+.tweet-left {
+  flex: 0 0 100px;
+}
+
+.tweet-image {
+  width: 100%;
+}
+
+.tweet-right {
+  padding: 10px;
+}
+
+.user-card {
+  border-radius: 50%;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.user-name {
+  text-decoration: none;
+}
+
+.user-avatar {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+}
