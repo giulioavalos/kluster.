@@ -63,4 +63,19 @@
     <div id="review-form-container" class="mt-3" data-review-form-target="form">
       <%= render 'reviews/form', review: @review, type: "artist" %>
   </div>
-</div>
+
+  <div class="user-reviews">
+    <div class="container">
+      <h2>Some users says...</h2>
+      <div class="row">
+        <% if @reviews.any? %>
+        <% @reviews.where(spotify_item_id: params[:id]).each do |review| %>
+          <div class="col-md-4">
+            <%= render 'reviews/review_card', review: review %>
+          </div>
+          <% end %>
+          <% else %>
+          <h5>No reviews to display. Be the first one to leave a review!</h5>
+        <% end %>
+    </div>
+  </div>

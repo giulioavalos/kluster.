@@ -1,5 +1,4 @@
-<% @reviews.each do |review| %>
-  <div class="review-card">
+<div class="review-card">
     <section>
       <div class="profile-container <%#= (params[:controller] == 'users' && params[:action] == 'show') ? 'd-none' : '' %>">
         <div class="user-info">
@@ -54,7 +53,6 @@
           <div class="cuantity">
             <p><%= review.likes_count %></p>
           </div>
-
         <% end %>
       </div>
       </div>
