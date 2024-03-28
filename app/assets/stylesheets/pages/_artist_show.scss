@@ -3,8 +3,13 @@ ul.horizontal-list {
   padding: 0;
 }
 
+.total-artist-margin{
+  margin-left: 53px;
+  margin-right: -50px;
+}
+
 .margin-left-title{
-  margin-left: 30px;
+  margin-left: 16px;
 }
 
 .margin-button{
@@ -66,11 +71,13 @@ ul.horizontal-list li {
   border-radius: 10px;
   margin-left: 58px;
   margin-top: 21px;
-  margin-right: 50px
+  margin-right: 100px
 }
 
 .review-box {
   margin-bottom: 35px;
+  margin-left: 5px;
+  margin-right: 25px;
 }
 
 .margin-popular-tracks{
