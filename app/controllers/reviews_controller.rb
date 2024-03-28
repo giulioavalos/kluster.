@@ -2,6 +2,8 @@ class ReviewsController < ApplicationController
   before_action :set_review, only: %i[show edit update destroy]
 
   def create
+    item_id = params[:album_id] || params[:artist_id]
+    item_type = params[:album_id] ? 'Album' : 'Artist'
     @review = Review.new(review_params)
     if review_params[:spotify_item_type] == "artist"
       @spotify_api = RSpotify::Artist.find(@review.spotify_item_id)
