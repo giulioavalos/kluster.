@@ -1,72 +1,84 @@
-body {
-  font-family: 'Poppins', sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #000000;
-  color: #ffffff;
-}
-
 .review-card {
+  display: flex;
+  flex-direction: column;
   background-color: #323334;
-  padding: 20px;
-  border-radius: 10px;
-  margin-left: 50px;
-  margin-right: 50px;
-  min-width: 500px;
-  max-width: 500px;
-  margin: 30px;
+  border-radius: 12px;
+  width: 500px;
+  height: auto;
+  max-height: 400px;
+  margin: 25px;
+  padding: 25px;
 
-  .container-user {
+  .profile-container {
     display: flex;
     flex-direction: row;
+    justify-content: start;
     align-items: center;
-    padding: 10px;
+    text-decoration: none;
+    opacity: 80%;
+    width: relative;
+    height: relative;
+    margin-bottom: 10px;
+  }
+
+  .profile-container:hover {
+    opacity: 100%;
+  }
+
+  .user-info a {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    text-decoration: none;
+    color: whitesmoke;
+    max-height: 100px;
+  }
+
+  .user-avatar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
   }
 
   .avatar img {
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
     object-fit: cover;
+    opacity: 80%;
   }
 
-  .row {
-    display: flex;
-    flex-direction: column;
-    margin-left: 10px;
-    align-items: center;
+  .avatar img:hover {
+    opacity: 100%;
   }
 
-  .row span {
-    font-size: 0.9em;
-    margin: 0;
-    margin-top: 5px;
-  }
-
-  .container-user .mr-2 {
-    margin-right: 10px;
-  }
-
-  .container-review {
+  .name {
     display: flex;
     flex-direction: row;
-    margin-bottom: 10px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 10px;
+    opacity: 80%;
+    text-decoration: none;
+    position: left;
   }
 
-  .container-review img {
+  .name p {
+    font-size: medium;
+  }
+
+  .review-container {
+    display: flex;
+    flex-direction: row;
+    margin-left: 15px;
+  }
+
+  .review-container img {
     width: 200px;
     height: 200px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0,0,0,.05);
     position: relative;
-  }
-
-  .review-content {
-    font-style: italic;
-    flex-wrap: wrap;;
+    margin: 5px;
   }
 
   .user-review {
@@ -75,20 +87,47 @@ body {
     margin-left: 10px;
   }
 
+  .review-rating {
+    font-style: italic;
+  }
+
+  .review-content {
+    font-style: italic;
+    color: whitesmoke;
+  }
+
   .social-button {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     margin-top: 10px;
   }
 
-  button {
+  .like-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    align-items: center;
+    margin-right: 25px;
+  }
+
+  .icon a {
     background-color: #ffffff00;
-    color: #000000;
+    width: 20px;
+    height: 20px;
+    color: rgb(228, 55, 182);
     border: none;
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
     margin: 5px;
+  }
+
+  .cuantity {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-left: 5px;
+    color: whitesmoke;
   }
 }

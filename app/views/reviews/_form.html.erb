@@ -1,7 +1,7 @@
 <%= simple_form_for review, url: album_reviews_path(params[:id]), data: {turbo: false} do |f| %>
   <div class="form-inputs">
-    <%= f.input :spotify_item_id, input_html: {value: params[:id]}, input_html: { class: "d-none"} %>
-    <%= f.input :spotify_item_type, input_html: {value: type}, input_html: { class: "d-none"} %>
+    <%= f.input :spotify_item_id, input_html: {value: params[:id], class: "d-none"}, label: false %>
+    <%= f.input :spotify_item_type, input_html: {value: type, class: "d-none"}, label: false  %>
     <%= f.input :rating, collection: 1..10 %>
     <%= f.input :content, as: :text %>
   </div>
