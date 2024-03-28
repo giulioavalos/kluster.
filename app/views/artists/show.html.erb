@@ -97,7 +97,6 @@
               <% end %>
               <span><%= review.likes_count %> likes</span>
             </div>
-
               </div>
               <p class="review-text"><%= review.content %> <i>(<%= review.rating %>/10)</i></p>
               <div class="review-footer">
@@ -108,8 +107,17 @@
         <% end %>
       </ul>
     </div>
+  </div>  
+ <div class="user-reviews">
+    <div class="container">
+      <h2>Some users says...</h2>
+      <div class="row">
+        <% unless @reviews.nil? %>
+          <%= render  "reviews/review_card" %>
+        <% end %>
+    </div>
   </div>
-
+  </div>
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     const openButton = document.getElementById('open-review-form');
