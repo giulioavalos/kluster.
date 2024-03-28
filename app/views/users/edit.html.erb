@@ -1,11 +1,13 @@
 <h1>Edit Profile</h1>
 
-<%= simple_form_for @user, url: update_user_path(@user), method: :patch do |f| %>
-  <%= f.input :name %>
-  <%= f.input :email %>
-  <%= f.input :birthdate, as: :date %>
-  <%= f.input :password, label: "New Password", required: false, placeholder: "Change password here" %>
-  <%= f.input :password_confirmation, label: "Confirm New Password", required: false %>
+<div class="container w-25">
+  <%= simple_form_for @user, url: update_user_path(@user), method: :patch, html: { class: 'simple_form' } do |f| %>
+    <%= f.input :name, input_html: { class: 'form-inputs'} %>
+    <%= f.input :email %>
+    <%= f.input :birthdate, as: :date %>
+    <%= f.input :password, label: "New Password", required: false, placeholder: "Change password here" %>
+    <%= f.input :password_confirmation, label: "Confirm New Password", required: false %>
 
-  <%= f.button :submit, 'Update' %>
-<% end %>
+    <%= f.button :submit, 'Update', class: 'button-purple' %>
+  <% end %>
+</div>
