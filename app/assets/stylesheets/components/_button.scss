@@ -10,12 +10,18 @@
   background-color: violet;
 }
 
-.button a {
-  color: white;
+.button-white {
+  color: rgb(204, 103, 247);
+  background-color: white;
+  border: 2px solid rgb(204, 103, 247);
+  border-radius: 20px;
   text-decoration: none;
 }
 
-.button a:hover {
+.button-white:hover {
   text-decoration: none;
   color: white;
+  background-color: rgb(204, 103, 247);
+  border: 2px solid white;
+
 }
