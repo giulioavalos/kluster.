@@ -5,16 +5,16 @@ class ReviewsController < ApplicationController
     item_id = params[:album_id] || params[:artist_id]
     item_type = params[:album_id] ? 'Album' : 'Artist'
     @review = Review.new(review_params)
-    if item_type == 'Artist'
-      @review_api = RSpotify::Album.find(@review.spotify_item_id)
-    else item_type = 'Album'
-      @review_api = RSpotify::Artist.find(@review.spotify_item_id)
+    if review_params[:spotify_item_type] == "artist"
+      @spotify_api = RSpotify::Artist.find(@review.spotify_item_id)
+    else
+      @spotify_api = RSpotify::Album.find(@review.spotify_item_id)
     end
-    @review.image = @review_api.images.first['url']
+    @review.image = @spotify_api.images.first['url']
     @review.user = current_user
     respond_to do |format|
       if @review.save!
-        if @review.type == "artist"
+        if @review.spotify_item_type == "artist"
           format.html { redirect_to artist_path(@review.spotify_item_id), notice: 'Review was successfully created.', anchor: "review_section" }
         else
           format.html { redirect_to album_path(@review.spotify_item_id), notice: 'Review was successfully created.', anchor: "review_section" }
@@ -53,6 +53,6 @@ class ReviewsController < ApplicationController
   end
 
   def review_params
-    params.require(:review).permit(:rating, :content, :spotify_item_id, :spotify_item_type, )
+    params.require(:review).permit(:rating, :content, :spotify_item_id, :spotify_item_type)
   end
 end

@@ -10,9 +10,13 @@
     <%= javascript_importmap_tags %>
     <script src="https://kit.fontawesome.com/fd7a8ba2cd.js" crossorigin="anonymous"></script>
   </head>
+  <nav>
+    <%= render 'shared/navbar' %>
+  </nav>
   <body>
-  <%= render "shared/navbar" %>
-  <%= yield %>
-  <%= render 'shared/footer' %>
+    <%= yield %>
   </body>
+  <footer>
+    <%= render 'shared/footer' %>
+  </footer>
 </html>

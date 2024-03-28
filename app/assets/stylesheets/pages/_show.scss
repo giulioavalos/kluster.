@@ -3,124 +3,135 @@
   flex-direction: column;
   margin-left: 100px;
   margin-right: 100px;
-}
 
-.profile-info {
-  display: flex;
-  flex-direction: row;
-  background-color: #282727;
-  border-radius: 12px;
-  margin-bottom: 10px;
-  margin: 20px;
-}
-.profile-info img {
-  width: 150px;
-  height: 150px;
-  border-radius: 75px;
-  margin: 50px;
-}
+  .content {
+    display: flex;
+    flex-direction: column;
+    margin-left: 100px;
+    margin-right: 100px;
+  }
 
-.profile-avatar {
-  align-items: relative;
-}
+  .profile-info {
+    display: flex;
+    flex-direction: row;
+    background-color: #592F62;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    margin: 20px;
+  }
 
-.profile-numbers {
-  display: flex;
-  flex-direction: column;
-  flex: auto;
-  margin-top: 50px;
-  margin-bottom: 50px;
-  align-items: flex-start;
-}
+  .profile-info img {
+    width: 150px;
+    height: 150px;
+    border-radius: 75px;
+    margin: 50px;
+  }
 
-.profile-numbers .container {
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-}
+  .profile-avatar {
+    align-items: relative;
+  }
 
-.profile-numbers .btn {
-  width: 75px;
-  align-items: center;
-  margin-bottom: 16px;
-}
+  .profile-numbers {
+    display: flex;
+    flex-direction: column;
+    flex: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    align-items: flex-start;
+  }
 
-.favorite-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin: 10px;
-}
-.favorite-container h4 {
-  font-weight: bold;
-  display: flex;
-  justify-content: center;
-  margin: 10px;
-  padding: 0;
-}
+  .profile-numbers .container {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+  }
 
-h2 {
-  font-weight: bold;
-  display: flex;
-  justify-content: center;
-  margin: 10px;
-  padding: 0;
-}
+  .profile-numbers .btn {
+    width: 75px;
+    align-items: center;
+    margin-bottom: 16px;
+  }
 
-.favorite-album {
-  display: flex;
-  flex-direction: column;
-  margin: 10px;
-}
+  .favorite-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 10px;
+  }
 
-.fav-title{
-  display: flex;
-  justify-content: center;
-  margin: 10px;
-  padding: 0;
-}
+  .favorite-container h4 {
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+    padding: 0;
+  }
 
-.fav-card{
-  display: flex;
-  justify-content: center;
-  margin: 10px;
-}
+  h2 {
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+    padding: 0;
+  }
 
-.container-review {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: 10px;
-}
+  .favorite-album {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+  }
 
-.container-review h2 {
-  font-weight: bold;
-  display: flex;
-  justify-content: center;
-  margin: 10px;
-  padding: 0;
-}
-.review-info {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-  background-color: #503e54;
-  border-radius: 12px;
-  margin: 20px;
-}
+  .fav-title {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+    padding: 0;
+  }
 
-.review-info h2 {
-  font-weight: bold;
-  display: flex;
-  text-align: center;
-  margin: 10px;
-  padding: 0;
-}
+  .fav-card {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+  }
 
-.review-info p {
-  display: flex;
-  text-align: center;
-  margin: 10px;
-  padding: 0;
+  .container-review {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 10px;
+  }
+
+  .container-review h2 {
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+    padding: 0;
+  }
+
+  .review-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    background-color: #592F62;
+    border-radius: 12px;
+    margin: 20px;
+  }
+
+  .review-info h2 {
+    font-weight: bold;
+    display: flex;
+    text-align: center;
+    margin: 10px;
+    padding: 0;
+  }
+
+  .review-info p {
+    display: flex;
+    text-align: center;
+    margin: 10px;
+    padding: 0;
+  }
+
 }

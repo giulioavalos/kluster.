@@ -3,8 +3,11 @@
     <% if @reviews.any? %>
       <%= render 'reviews/review_card' %>
     <% else %>
+    <div class="empty-feed">
       <%= image_tag 'empty_feed.png', alt: 'Empty feed', style: 'width: 20%;' %>
-      <p>This feed is empty. Find users to follow in search!</p>
+      <h2> Hey!</h2>
+      <h3>Follow users or create reviews to make this cat happy. :)</h3>
+    </div>
     <% end %>
   </div>
 </div>
