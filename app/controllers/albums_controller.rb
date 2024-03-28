@@ -8,17 +8,19 @@ class AlbumsController < ApplicationController
   end
 
   def show
-    @album = RSpotify::Album.find(params[:id])
-    @tracks = @album.tracks
-    @review = Review.new
+    item_id = params[:album_id] || params[:artist_id]
+    item_type = params[:album_id] ? 'Album' : 'Artist'
+    if item_type == 'Artist'
+      @album = RSpotify::Artist.find(item_id)
+      @review = Review.new
+    else item_type = 'Album'
+     @album = RSpotify::Album.find(item_id)
+     @tracks = @album.tracks
+      @review = Review.new
+    end
   rescue RestClient::BadRequest
     render file: "#{Rails.root}/public/404.html", layout: 'application', status: :not_found
   end
-
-  #def recommendation
-    #@recommendations = RSpotify::Recommendations.generate(seed_tracks: my_fav_albums.map(@user.id))
-    #@recommendations = @recommendations.tracks.first(10)
-  #end
 
   private
 
