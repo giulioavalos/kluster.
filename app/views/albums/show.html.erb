@@ -1,6 +1,6 @@
 <% if @album %>
   <div class="align-items-center">
-    <h1><%= @album.name %> <i>by</i> <%= @artist.name %></h1>
+    <h1><%= @album.name %> <i>by</i>
 
     <div class="mt-auto">
       <div class="d-flex align-items-center margin-button">
@@ -11,8 +11,6 @@
             <%= f.submit "Add as favorite ", class: 'btn btn-primary favorite' %>
           <% end %>
         <% end %>
-        <button class='btn btn-primary' data-action="click->review-form#displayForm" id='open-review-form'>Leave a review</button>
-
 
       </div>
       <div class="col-md-8 d-flex flex-column align-items-center">

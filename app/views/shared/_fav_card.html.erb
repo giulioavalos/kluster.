@@ -1,8 +1,14 @@
 <% @user.favorites.each do |favorite| %>
   <div class="favorite-card">
     <div class="image">
+      <% if favorite.spotify_item_id == 'album' %>
       <%= link_to  album_path(favorite.spotify_item_id) do %>
         <%= image_tag favorite.image %>
+        <% end %>
+        <% else favorite.spotify_item_id == 'artist'%>
+        <%= link_to  artist_path(favorite.spotify_item_id) do %>
+        <%= image_tag favorite.image %>
+        <% end %>
       <% end %>
     </div>
 </div>
