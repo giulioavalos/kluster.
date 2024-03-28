@@ -62,13 +62,13 @@ ul.horizontal-list li {
 
 
 .margin-popular-tracks{
-  margin-top: 10px;
+  margin-top: -15px;
   margin-bottom: 25px;
 }
 
 .most-popular-tracks{
   margin-top: 15px;
-    margin-bottom: -25px
+  margin-bottom: -25px
 }
 
 .artist-content {
@@ -87,6 +87,7 @@ ul.horizontal-list li {
 .albums-container-unique {
   display: flex;
   justify-content: space-between;
+  margin-top: -15px;
 }
 
 .album-list {
