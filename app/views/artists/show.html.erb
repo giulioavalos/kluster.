@@ -68,6 +68,10 @@
     <div class="container">
       <h2>Some users says...</h2>
       <div class="row">
-       
+        <% unless @reviews.nil? %>
+          <%= render  "reviews/review_card" %>
+        <% end %>
     </div>
   </div>
+  </div>
+  <% console %>

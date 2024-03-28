@@ -58,9 +58,7 @@
 <div class="container-review">
   <h2><%= @user.name %>'s reviews</h2>
     <div class="review-info">
-      <% @reviews.each do |review| %>
         <%= render partial: 'reviews/review_card' %>
-      <% end %>
     </div>
   </div>
 </div>

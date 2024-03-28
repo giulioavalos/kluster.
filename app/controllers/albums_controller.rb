@@ -11,6 +11,7 @@ class AlbumsController < ApplicationController
     @album = RSpotify::Album.find(params[:id])
     @tracks = @album.tracks
     @review = Review.new
+    @reviews = Review.where(spotify_item_id: @album.id)
   rescue RestClient::BadRequest
     render file: "#{Rails.root}/public/404.html", layout: 'application', status: :not_found
   end
