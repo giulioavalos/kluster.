@@ -8,8 +8,7 @@ ul.horizontal-list {
 }
 
 .margin-button{
-  margin-left: 50px;
-    margin-top: 7px;
+  margin-left: 51px;
 }
 
 ul.horizontal-list li {
@@ -52,27 +51,43 @@ ul.horizontal-list li {
 
 .artist-info {
   margin-right: 150px;
+  margin-left: -10px;
+  margin-top: -5px;
 }
 
 .genre-list {
   margin-left: 15px;
 }
 
-.margin-tracks{
+
+.artist-review_section {
+  background-color: #525252;
+  padding: 10px;
+  border-radius: 10px;
+  margin-left: 58px;
+  margin-top: 21px;
+  margin-right: 50px
+}
+
+.review-box {
+  margin-bottom: 35px;
+}
+
+.margin-popular-tracks{
   margin-top: -15px;
   margin-bottom: 25px;
 }
 
 .most-popular-tracks{
   margin-top: 15px;
-    margin-bottom: -25px
+  margin-bottom: -25px
 }
 
 .artist-content {
   display: flex;
   justify-content: revert-layer;
   margin-bottom: 30px;
-  margin-left: 30px;
+  margin-left: 10px;
 }
 
 .artist-tracks-albums {
@@ -84,6 +99,7 @@ ul.horizontal-list li {
 .albums-container-unique {
   display: flex;
   justify-content: space-between;
+  margin-top: -15px;
 }
 
 .album-list {

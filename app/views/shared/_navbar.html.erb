@@ -14,7 +14,7 @@
         <%= form_tag(search_path, method: :get, class: "navbar-form") do %>
           <div class="field has-addons">
             <div class="control">
-              <%= text_field_tag :query, params[:query], placeholder: "Search for artists", class: "input", id: "searchInput" %>
+              <%= text_field_tag :query, params[:query], placeholder: "Search...", class: "input", id: "searchInput", style: 'border: 3px solid #f8a3fcd1; border-radius: 20px; padding: 6px;' %>
               <%= button_tag "Search", class: "button-purple button", id: "searchButton" %>
             </div>
           </div>
