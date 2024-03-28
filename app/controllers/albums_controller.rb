@@ -8,7 +8,6 @@ class AlbumsController < ApplicationController
   end
 
   def show
-    if 
     @album = RSpotify::Album.find(params[:id])
     @tracks = @album.tracks
     @review = Review.new
