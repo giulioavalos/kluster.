@@ -4,11 +4,6 @@
 // 2. These variables are defined with default value (see https://robots.thoughtbot.com/sass-default)
 // 3. You can override them below!
 
-@import "bootstrap/functions";
-@import "bootstrap/variables";
-
-
-
 // General style
 $font-family-sans-serif: $body-font;
 $headings-font-family:   $headers-font;
@@ -30,4 +25,3 @@ $border-radius-lg: 2px;
 $border-radius-sm: 2px;
 
 // Override other variables below!
-$theme-colors: map-merge($theme-colors, ( "magic": $magic ));
