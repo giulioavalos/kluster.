@@ -1,9 +1,22 @@
 <%- if controller_name != 'sessions' %>
-  <%= link_to "Log in", new_session_path(resource_name) %><br />
+  <%= link_to "Log in", new_session_path(resource_name), class:'button-white', style: 'color: rgb(204, 103, 247);
+  background-color: white;
+  border: 2px solid rgb(204, 103, 247);
+  border-radius: 20px;
+  text-decoration: none;
+  padding: 10px;
+  margin-bottom: 4px;' %><br />
 <% end %>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <%= link_to "Sign up", new_registration_path(resource_name) %><br />
+  <%= link_to "Sign up", new_registration_path(resource_name), style: 'color: rgb(204, 103, 247);
+  background-color: white;
+  border: 2px solid rgb(204, 103, 247);
+  border-radius: 20px;
+  text-decoration: none;
+  padding: 10px;
+  margin-bottom: 4px;
+  margin-top: 10px;' %><br />
 <% end %>
 
 <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>

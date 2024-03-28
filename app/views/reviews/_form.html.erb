@@ -2,10 +2,10 @@
   <div class="form-inputs">
     <%= f.input :spotify_item_id, input_html: {value: params[:id], class: "d-none"}, label: false %>
     <%= f.input :spotify_item_type, input_html: {value: type, class: "d-none"}, label: false  %>
-    <%= f.input :rating, collection: 1..10 %>
-    <%= f.input :content, as: :text %>
+    <%= f.input :rating, collection: 1..10, input_html: {style: 'border: 3px solid #f8a3fcd1; border-radius: 20px;'} %>
+    <%= f.input :content, as: :text, input_html: {style: 'border: 3px solid #f8a3fcd1; border-radius: 10px;'}  %>
   </div>
   <div class="form-actions">
-    <%= f.button :submit, class: 'btn btn-primary' %>
+    <%= f.button :submit, class: 'button-purple mb-3' %>
   </div>
 <% end %>
