@@ -34,7 +34,7 @@
       <div class="artist-tracks-albums">
         <div class="most-popular-tracks">
           <h2>Most Popular Tracks (Worldwide):</h2>
-          <ul class="margin-tracks">
+          <ul class="margin-popular-tracks">
             <% @artist.top_tracks(:US).first(5).each do |track| %>
               <li><%= track.name %></li>
             <% end %>
