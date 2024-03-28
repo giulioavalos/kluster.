@@ -1,18 +1,17 @@
 <% @reviews.each do |review| %>
   <div class="review-card">
     <section>
-      <div class="profile-container <%= (params[:controller] == 'users' && params[:action] == 'show') ? 'd-none' : '' %>">
+      <div class="profile-container <%#= (params[:controller] == 'users' && params[:action] == 'show') ? 'd-none' : '' %>">
+        <div class="user-info">
         <%= link_to user_profile_path(review.user) do %>
+        <div class="user-avatar">
           <p class="avatar"><%= image_tag review.user.avatar %></p>
-        <% end %>
-        <div class="profile-info">
-          <%= link_to user_profile_path(review.user) do %>
-            <strong class="mr-2" style="color: white"><%= review.user.name %></strong>
-          <% end %>
-          <span class="profile-info text-white">
-            <%= Following.where(followed_user_id: review.user).count %> followers <%= review.user.reviews.count %> reviews
-          </span>
         </div>
+          <div class="name">
+          <p><%= review.user.name %> says...</p>
+          </div>
+        <% end %>
+      </div>
       </div>
     </section>
     <section>
@@ -38,7 +37,9 @@
     </section>
     <section>
       <div class="social-button">
+        <div class="like-button">
         <% liked_review = Like.find_by(user: current_user, review_id: review.id) %>
+        <div class="icon">
         <% if liked_review %>
           <%= link_to like_path(Like.find_by(user: current_user, review_id: review.id)),
             data: {turbo_method: :delete } do %>
@@ -49,8 +50,13 @@
             <%= f.hidden_field :review_id, value: review.id %>
             <button type="submit" name="commit" value="" data-disable-with="" aria-hidden="true" control-id="ControlID-3"><i class="fa-regular fa-heart"></i></button>
           <% end %>
+          </div>
+          <div class="cuantity">
+            <p><%= review.likes_count %></p>
+          </div>
+
         <% end %>
-        <span><%= review.likes_count %> likes</span>
+      </div>
       </div>
     </section>
   </div>
