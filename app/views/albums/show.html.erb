@@ -13,9 +13,7 @@
         <% end %>
         <button class='btn btn-primary' data-action="click->review-form#displayForm" id='open-review-form'>Leave a review</button>
 
-        <div id="review-form-container" class=" mt-3" data-review-form-target="form">
-          <%= render 'reviews/form', review: @review, type: "album" %>
-        </div>
+
       </div>
       <div class="col-md-8 d-flex flex-column align-items-center">
         <div class="d-flex">
@@ -49,6 +47,10 @@
       </div>
 
     </div>
+
+<div id="review-form-container" class=" mt-3 d-none" data-review-form-target="form">
+          <%= render 'reviews/form', review: @review, type: "album" %>
+        </div>
 
     <div class="review_section">
       <h2>Reviews</h2>
