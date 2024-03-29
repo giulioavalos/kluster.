@@ -1,14 +1,14 @@
   <% @reviews.each do |review| %>
-    <div class="profile-container">
-      <%= link_to user_profile_path(review.user) do %>
+    <div class="profile-container col-10">
+    <div class="user-info-feed d-flex align-items-center ms-3 my-3">
         <div class="user-avatar">
-          <%= image_tag review.user.avatar || 'default_user_icon.jpg', alt: 'User Avatar',class: "user-avatar" %>
-        </div>
-        <div class="user-name">
-          <p><%= review.user.name %> has posted a new review</p>
+              <%= link_to user_profile_path(review.user) do %>
+          <%= image_tag review.user.avatar || 'default_user_icon.jpg', alt: 'User Avatar',class: "avatar-bordered" %>
         </div>
       <% end %>
-      <div class="review-card">
+      <div class="delete-margins"><%= review.user.name %> has posted a new review</div>
+    </div>
+      <div class="review-card mb-2">
         <div class="review-container">
           <% if review.image.nil? %>
             <%= image_tag 'default_user_icon.jpg' %>
@@ -23,12 +23,13 @@
               <% end %>
             <% end %>
           <% end %>
-          <div class="user-review">
+          <div class="user-review ms-3">
             <div class="review-rating">
               <h3><%= review.rating %>/10</h3>
             </div>
             <div class="review-content" style="font-style: italic;">
               <p>"<%= review.content %>"</p>
+              <p><%= review.likes_count %> likes</p>
             </div>
           </div>
         </div>
@@ -45,7 +46,7 @@
                 <%= simple_form_for Like.new, url: review_likes_path(review_id: review.id), method: :post, remote: true do |f| %>
                   <%= f.hidden_field :review_id, value: review.id %>
                   <button type="submit" name="commit" value="" data-disable-with="" aria-hidden="true" control-id="ControlID-3"><i class="fa-regular fa-heart"></i></button>
-                  <p><%= review.likes_count %></p>
+
                 <% end %>
               <% end %>
             </div>
