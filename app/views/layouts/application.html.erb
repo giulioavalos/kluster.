@@ -1,21 +1,28 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= meta_title %></title>
+<head>
+  <title><%= meta_title %></title>
+  <meta name="description" content="<%= meta_description %>">
+  <!-- Facebook Open Graph data -->
+  <meta property="og:title" content="<%= meta_title %>" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="<%= request.original_url %>" />
+  <meta property="og:image" content="<%= meta_image %>" />
+  <meta property="og:description" content="<%= meta_description %>" />
+  <meta property="og:site_name" content="<%= meta_title %>" />
 
-    <meta name="description" content="<%= meta_description %>">
-
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-    <script src="https://kit.fontawesome.com/fd7a8ba2cd.js" crossorigin="anonymous"></script>
-  </head>
-  <nav>
-    <%= render 'shared/navbar' %>
-  </nav>
-  <body>
-    <%= yield %>
-  </body>
-  <footer>
-    <%= render 'shared/footer' %>
-  </footer>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
+  <%= favicon_link_tag %>
+  <script src="https://kit.fontawesome.com/fd7a8ba2cd.js" crossorigin="anonymous"></script>
+</head>
+<nav>
+  <%= render 'shared/navbar' %>
+</nav>
+<body>
+  <%= yield %>
+</body>
+<footer>
+  <%= render 'shared/footer' %>
+</footer>
 </html>
