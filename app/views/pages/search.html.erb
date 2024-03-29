@@ -1,61 +1,72 @@
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-10">
-     <div class="card-header">Artists</div>
-      <% if @artists.any? %>
-        <div class="artists-container">
-          <div class="card">
-            <div class="card-body">
-              <div class="row">
-                <% @artists.each do |artist| %>
-                  <div class="col-4">
-                    <div class="artist-card">
-                      <% if artist.images.present? %>
-                        <%= link_to artist_path(id: artist.id), class: "artist-link" do %>
-                          <%= image_tag artist.images.first["url"], class: "artist-image" %>
-                        <% end %>
-                        <%= link_to artist.name, artist_path(id: artist.id), class: "artist-name" %>
+    <div class="col-12">
+      <div class="card-header">Artists</div>
+      <div class="artists-container">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <% @artists.first(4).each_with_index do |artist, index| %>
+                <div class="col-3">
+                  <div class="artist-card<%= 'hidden' if index >= 4 %>" id="artist-card-<%= index %>">
+                    <% if artist.images.present? %>
+                      <%= link_to artist_path(id: artist.id), class: "artist-link" do %>
+                        <%= image_tag artist.images.first["url"], class: "artist-image" %>
                       <% end %>
-                    </div>
+                      <%= link_to artist.name, artist_path(id: artist.id), class: "artist-name" %>
+                    <% end %>
                   </div>
-                <% end %>
-              </div>
+                </div>
+              <% end %>
             </div>
+            <% if @artists.size > 4 %>
+              <button id="show-more-artists" class="button-white mx-auto">Show More</button>
+            <% end %>
           </div>
         </div>
-      <% end %>
+      </div>
     </div>
   </div>
 </div>
 
-<div class="card-header">Albums</div>
+<script>
+  document.getElementById('show-more-artists').addEventListener('click', function() {
+    document.querySelectorAll('.artist-card.hidden').forEach(function(card) {
+      card.classList.remove('hidden');
+    });
+    this.remove();
+  });
+</script>
 
-  <div class="albums-container">
-    <% if @albums.any? %>
-      <div class="album-card-body row">
-        <% @albums.each do |album| %>
-          <div class="album-card">
-            <% if album.images.present? %>
-              <%= link_to album_path(id: album.id), class: "album-link" do %>
-                <%= image_tag album.images.first["url"], class: "album-image" %>
+
+
+<div class="albums-container">
+  <% if @albums.any? %>
+    <div class="col-10 mx-auto">
+      <div class="card-header">Albums</div>
+      <% @albums.first(3).each do |album| %>
+      <%= link_to album_path(id: album.id), class: "album-link-search" do %>
+        <div class="album-card">
+            <%= image_tag album.images.first["url"], class: "album-image-search" %>
+          <div class="album-details">
+            <h1><%= album.name %></h1>
+            <h2><%= album.artists.map(&:name).join(', ') %></h2>
+            <ul>
+              <% album.tracks.first(5).each do |track| %>
+                <li><%= track.name %></li>
               <% end %>
-            <% end %>
-            <div class="album-details">
-              <h1><%= album.name %></h1>
-              <h2><%= album.artists.map(&:name).join(', ') %></h2>
-              <ul>
-                <% album.tracks.first(5).each do |track| %>
-                  <li><%= track.name %></li>
-                <% end %>
-              </ul>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
-</div>
+            </ul>
 
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+    </div>
+    <% if @albums.size > 3 %>
+      <button id="show-more-albums" class="button-white mx-auto">Show More</button>
+    <% end %>
+  <% end %>
+</div>
 
 <div class="container">
   <div class="row justify-content-center">
@@ -69,7 +80,11 @@
               <% @users.each do |user| %>
                 <div class="user-card">
                   <%= link_to user.name, user_profile_path(user), class: "user-name" %>
-                  <%= image_tag user.avatar, class: "user-avatar" %>
+                       <% if user.avatar.present? %>
+                      <%= image_tag user.avatar, class: "user-avatar" %>
+                    <% else %>
+                      <%= image_tag "default_user_icon.jpg", class: "user-avatar" %>
+                    <% end %>
                 </div>
               <% end %>
             </div>
@@ -79,18 +94,3 @@
     </div>
   </div>
 </div>
-
-
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const showMoreButton = document.getElementById("show-more-button");
-    const hiddenArtists = document.getElementById("hidden-artists");
-
-    if (showMoreButton && hiddenArtists) {
-      showMoreButton.addEventListener("click", function() {
-        hiddenArtists.style.display = (hiddenArtists.style.display === "none") ? "block" : "none";
-        showMoreButton.innerText = (hiddenArtists.style.display === "none") ? "Show More" : "Show Less";
-      });
-    }
-  });
-</script>
