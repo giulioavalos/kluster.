@@ -1,13 +1,7 @@
 <div class="total-artist-margin">
   <div class="d-flex align-items margin-left-title">
-    <h1><%= @artist.name %> -> </h1>
-    <h1>
-      <ul class="horizontal-list margin-to-title">
-        <% @artist.genres.each do |genre| %>
-          <li><%= genre.capitalize %></li>
-        <% end %>
-      </ul>
-    </h1>
+    <h1><%= @artist.name %></h1>
+
   </div>
 
   <div data-controller="review-form">
