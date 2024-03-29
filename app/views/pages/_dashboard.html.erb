@@ -1,18 +1,22 @@
 <div class="main">
-  <div class="feed">
-    <% if @reviews.any? %>
-    <div class="review-feed">
-      <%= render 'reviews/review_card' %>
+  <% if @reviews.any? %>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="review-feed">
+          <%= render 'reviews/review_card' %>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="user-feed">
+          <%= render 'users/suggested_users'%>
+        </div>
+      </div>
     </div>
-    <div class="user-feed">
-      <%= render 'users/suggested_users'%>
-    </div>
-    <% else %>
+  <% else %>
     <div class="empty-feed">
       <%= image_tag 'empty_feed.png', alt: 'Empty feed', style: 'width: 20%;' %>
       <h2> Hey!</h2>
       <h3>Follow users or create reviews to make this cat happy. :)</h3>
     </div>
-    <% end %>
-  </div>
+  <% end %>
 </div>
