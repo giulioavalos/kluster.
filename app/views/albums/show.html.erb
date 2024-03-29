@@ -8,9 +8,7 @@
           <% if Favorite.find_by(user: current_user, spotify_item_id: @album.id).present? %>
             <%= link_to 'Remove from Favorites', favorite_path(Favorite.find_by(user: current_user, spotify_item_id: @album.id)), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'btn btn-warning me-2' %>
           <% else %>
-            <%= simple_form_for Favorite.new, url: album_favorites_url(@album.id) do |f| %>
-              <%= f.submit "Add as favorite ", class: 'btn btn-primary favorite' %>
-            <% end %>
+            <%=button_to 'Add as favorite', album_favorites_path(@album.id), method: :post, class: 'btn btn-primary favorite' %>
           <% end %>
     <button class='btn btn-primary' data-action="click->review-form#displayForm" id='open-review-form-album'>Leave a review</button>
 
@@ -106,6 +104,15 @@
   document.addEventListener('turbo:load', function() {
     const openButton = document.getElementById('open-review-form-album');
     const formContainer = document.getElementById('review-form-container-album');
+    openButton.addEventListener('click', function(event) {
+      event.preventDefault();
+      formContainer.classList.toggle('d-none');
+    });
+  });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const openButton = document.getElementById('open-review-form');
+    const formContainer = document.getElementById('review-form-container');
     openButton.addEventListener('click', function(event) {
       event.preventDefault();
       formContainer.classList.toggle('d-none');
