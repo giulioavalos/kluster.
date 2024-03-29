@@ -7,7 +7,7 @@
 <ul>
   <% User.all.each do |user| %>
     <li>
-      <%= image_tag user.avatar %>
+      <%= image_tag user.avatar || 'default_user_icon.jpg' %>
       <%= link_to user.name, user_profile_path(user.id) %> <br>
       <%= button_to 'Follow', followings_path(followed_user_id: user.id), method: :post %>
     </li>
