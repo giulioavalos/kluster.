@@ -1,13 +1,7 @@
 <div class="total-artist-margin">
   <div class="d-flex align-items margin-left-title">
-    <h1><%= @artist.name %> -> </h1>
-    <h1>
-      <ul class="horizontal-list margin-to-title">
-        <% @artist.genres.each do |genre| %>
-          <li><%= genre.capitalize %></li>
-        <% end %>
-      </ul>
-    </h1>
+    <h1><%= @artist.name %></h1>
+
   </div>
 
   <div data-controller="review-form">
@@ -21,9 +15,7 @@
             <% if Favorite.find_by(user: current_user, spotify_item_id: @artist.id).present? %>
               <%= link_to 'Remove from Favorites', favorite_path(Favorite.find_by(user: current_user, spotify_item_id: @artist.id)), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'btn btn-warning' %>
             <% else %>
-              <%= simple_form_for Favorite.new, url: artist_favorites_url(@artist.id) do |f| %>
-                <%= f.submit "Add as favorite", class: 'btn btn-primary favorite' %>
-              <% end %>
+              <%=button_to 'Add as favorite', artist_favorites_path(@artist.id), method: :post, class: 'btn btn-primary favorite' %>
             <% end %>
           </div>
           <div>
@@ -119,4 +111,15 @@
       formContainer.classList.toggle('d-none');
     });
   });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const openButton = document.getElementById('open-review-form');
+    const formContainer = document.getElementById('review-form-container');
+    openButton.addEventListener('click', function(event) {
+      event.preventDefault();
+      formContainer.classList.toggle('d-none');
+    });
+  });
+
+
 </script>
