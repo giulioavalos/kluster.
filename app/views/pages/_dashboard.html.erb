@@ -1,7 +1,7 @@
 <div class="main">
   <div class="feed">
     <% if @reviews.any? %>
-      <%= render 'reviews/review_card' %>
+      <%= render 'suggested_users', users: @users %>
     <% else %>
     <div class="empty-feed">
       <%= image_tag 'empty_feed.png', alt: 'Empty feed', style: 'width: 20%;' %>
