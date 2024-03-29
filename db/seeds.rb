@@ -13,7 +13,7 @@ user2 = User.create(email: 'user2@example.com', password: '123456', avatar: 'htt
 
 # Create 10 more users
 10.times do |i|
-  User.create(email: "user#{i + 3}@example.com", password: "123456", avatar: "https://i.pravatar.cc/150?img=#{i + 3}", name: "User #{i + 3}")
+  User.create(email: "user#{i + 3}@example.com", password: "123456", avatar: "https://i.pravatar.cc/150?img=#{i + 3}", name: "")
 end
 
 puts "Seeded!"

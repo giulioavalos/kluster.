@@ -67,7 +67,11 @@
           <div class="review-content">
             <div class="d-flex">
               <div class="review-header mb-2">
-                <%= image_tag "#{review.user.avatar}", class: "avatar dropdown-toggle profile-image mr-3", alt:"profile image"%>
+                <% if review.user.avatar.present? %>
+                  <%= image_tag "#{review.user.avatar}", class: "avatar dropdown-toggle profile-image mr-3", alt:"profile image"%>
+                <% else %>
+                  <%= image_tag "default_user_icon.jpg", class: "avatar dropdown-toggle profile-image mr-3", alt:"profile image"%>
+                <% end %>
                 <div class="row mr-4 user-info">
                   <strong class="mr-4" style="color: black"><%= review.user.name %></strong>
                   <span class="review-info text-muted mr-4">
