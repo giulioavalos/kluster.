@@ -38,8 +38,6 @@
     </div>
   </div>
 
-  <h2><%= @user.name %>'s stats</h2>
-
   <div class="favorite-container">
     <div class="favorite-album">
       <div class="fav-title">
@@ -50,16 +48,17 @@
           <%= render "shared/fav_card" %>
         </div>
       <% else %>
-        <h5>No favorites to display. Try adding a few and come back later.</h5>
+        <h5>No favorites to display.</h5>
       <% end %>
     </div>
   </div>
 
   <div class="container-review">
     <h2><%= @user.name %>'s reviews</h2>
+    <% if @reviews.nil? %>
     <div class="artist-review_section">
       <ul class="list-unstyled">
-        <% Review.where(@user.id == params[:id]).each do |review| %>
+        <% @reviews.each do |review| %>
           <div class="review-box">
             <div class="review-content">
               <div class="d-flex">
@@ -97,5 +96,8 @@
         <% end %>
       </ul>
     </div>
+    <% else %>
+      <h5>No reviews to display. Try adding a few and come back later.</h5>
+    <% end %>
   </div>
 </div>
