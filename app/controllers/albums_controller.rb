@@ -1,6 +1,7 @@
 # app/controllers/albums_controller.rb
 class AlbumsController < ApplicationController
   before_action :set_artist
+  before_action :set_album
   before_action :authenticate_spotify
 
   def index
@@ -12,14 +13,7 @@ class AlbumsController < ApplicationController
     @tracks = @album.tracks
     @review = Review.new
     @reviews = Review.where(spotify_item_id: @album.id)
-  rescue RestClient::BadRequest
-    render file: "#{Rails.root}/public/404.html", layout: 'application', status: :not_found
   end
-
-  #def recommendation
-    #@recommendations = RSpotify::Recommendations.generate(seed_tracks: my_fav_albums.map(@user.id))
-    #@recommendations = @recommendations.tracks.first(10)
-  #end
 
   private
 

@@ -11,10 +11,16 @@
       <div class="review-card">
         <div class="review-container">
           <% if review.image.nil? %>
-              <%= image_tag 'default_user_icon.jpg' %>
+            <%= image_tag 'default_user_icon.jpg' %>
+          <% else %>
+            <% if review.spotify_item_type == 'album' %>
+              <%= link_to album_path(review.spotify_item_id) do %>
+                <%= image_tag review.image || "default_user_icon.jpg" %>
+              <% end %>
             <% else %>
-            <%= link_to album_path(review.spotify_item_id) do %>
-              <%= image_tag review.image || "default_user_icon.jpg" %>
+              <%= link_to artist_path(review.spotify_item_id) do %>
+                <%= image_tag review.image || "default_user_icon.jpg" %>
+              <% end %>
             <% end %>
           <% end %>
           <div class="user-review">
