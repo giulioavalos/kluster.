@@ -3,10 +3,8 @@
   background-color: #323334;
   border-radius: 12px;
   margin-bottom: 12px;
-  margin-left: 12px;
-  margin-right: 12px;
   position: relative;
-  width: 120%;
+  min-height: 250px;
 
   .profile-container {
     display: flex;
@@ -15,30 +13,24 @@
     opacity: 0.8;
   }
 
-  .user-name {
-    text-decoration: none;
-    height: fit-content;
-    background-color: #824d85d1;
-    color: #ffffffd1;
-    padding: 2px 16px;
-    border-radius: 20px;
-    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-    margin-block: auto;
-    margin-left: 20px;
-  }
+  .delete-margins {
+      margin: 0 !important;
+      font-size: x-large !important;
+      text-decoration: none !important;
+      background-color: #824d85d1 !important;
+      color: #ffffffd1 !important;
+      padding: 16px !important;
+      border-radius: 9px !important;
+      transition: background-color 0.3s, color 0.3s, border-color 0.3s !important;
+      font-size: x-large !important;
+      text-align: center !important;
+    }
+
 
   .profile-container:hover {
     opacity: 1;
   }
 
-  .avatar img {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    object-fit: cover;
-    opacity: 0.8;
-    transition: opacity 0.3s ease;
-  }
 
   .avatar img:hover {
     opacity: 1;
@@ -55,10 +47,14 @@
   }
 
   .review-container img {
-    width: 200px;
-    height: 200px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,.05);
+    width: auto;
+    /* display: flex; */
+    height: 238px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    /* align-items: baseline; */
+    /* position: absolute; */
+    /* bottom: 23px; */
+    padding-top: 15px;
   }
 
   .user-review {
@@ -101,12 +97,19 @@
     margin-left: 5px;
     color: whitesmoke;
   }
-}
 
-a {
-  text-decoration: none;
-  display: flex;
-  align-items: baseline;
-  justify-content: space-evenly;
-  padding: 20px;
+  a {
+    text-decoration: none;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-evenly;
+    font-size: x-large;
+  }
+
+  .user-info-feed {
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+  }
+
 }
