@@ -1,0 +1,11 @@
+<h1>Suggested Users to Follow</h1>
+
+<ul>
+  <% @users.first(5).each do |user| %>
+    <li>
+      <%= image_tag user.avatar %>
+      <%= link_to user.name, user_path(user.id) %> <br>
+      <%= link_to "Follow", follow_user_path(user.id), method: :post %>
+    </li>
+  <% end %>
+</ul>
