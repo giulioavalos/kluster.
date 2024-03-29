@@ -2,59 +2,54 @@
   <div class="feed">
     <% if @reviews.any? %>
       <% @reviews.each do |review| %>
-        <div class="review-card">
-          <section>
-            <div class="profile-container">
-              <div class="user-info">
-                <%= link_to user_profile_path(review.user) do %>
-                  <div class="user-avatar">
-                    <p class="avatar"><%= image_tag review.user.avatar %></p>
-                  </div>
-                  <div class="name">
-                    <p><%= review.user.name %> says...</p>
-                  </div>
+      <div class="profile-container col-6">
+            <%= link_to user_profile_path(review.user) do %>
+              <div class="user-avatar">
+                <%= image_tag review.user.avatar || 'default_user_icon.jpg', alt: 'User Avatar',class: "user-avatar" %>
+              </div>
+              <div class="user-name">
+                <p><%= review.user.name %> has posted a new review</p>
+              </div>
+            <% end %>
+            <div class="review-card">
+          <div class="review-container">
+  <% album = RSpotify::Album.find(review.spotify_item_id) %>
+  <% if album.images.any? %>
+    <%= link_to album_path(review.spotify_item_id) do %>
+      <%= image_tag album.images.first["url"] %>
+    <% end %>
+  <% end %>
+  <div class="user-review">
+    <div class="review-rating">
+      <h3><%= review.rating %>/10</h3>
+    </div>
+    <div class="review-content" style="font-style: italic;">
+      <p>"<%= review.content %>"</p>
+    </div>
+  </div>
+</div>
+          <div class="social-button">
+            <div class="like-button">
+              <% liked_review = Like.find_by(user: current_user, review_id: review.id) %>
+              <div class="icon">
+                <% if current_user && liked_review %>
+                  <%= link_to like_path(liked_review), method: :delete, remote: true do %>
+                    <i class="fa-solid fa-heart"></i>
+                  <% end %>
+                <% elsif current_user %>
+                  <%= simple_form_for Like.new, url: review_likes_path(review_id: review.id), method: :post, remote: true do |f| %>
+                    <%= f.hidden_field :review_id, value: review.id %>
+                    <button type="submit" name="commit" value="" data-disable-with="" aria-hidden="true" control-id="ControlID-3"><i class="fa-regular fa-heart"></i></button>
+                  <% end %>
                 <% end %>
               </div>
-            </div>
-          </section>
-          <section>
-            <div class="review-container">
-              <%= link_to review.spotify_item_id == 'artist' ? album_path(review.spotify_item_id) : artist_path(review.spotify_item_id) do %>
-                <%= image_tag review.image if review.image %>
-              <% end %>
-              <div class="user-review">
-                <div class="review-rating">
-                  <h3><%= review.rating %>/10</h3>
-                </div>
-                <div class="review-content" style="italic">
-                  <p>"<%= review.content %>"</p>
-                </div>
+              <div class="quantity">
+                <p><%= review.likes_count %></p>
               </div>
             </div>
-          </section>
-          <section>
-            <div class="social-button">
-              <div class="like-button">
-                <% liked_review = Like.find_by(user: current_user, review_id: review.id) %>
-                <div class="icon">
-                  <% if liked_review %>
-                    <%= link_to like_path(liked_review), method: :delete, remote: true do %>
-                      <i class="fa-solid fa-heart"></i>
-                    <% end %>
-                  <% else %>
-                    <%= simple_form_for Like.new, url: review_likes_path(review_id: review.id), method: :post, remote: true do |f| %>
-                      <%= f.hidden_field :review_id, value: review.id %>
-                      <button type="submit" name="commit" value="" data-disable-with="" aria-hidden="true" control-id="ControlID-3"><i class="fa-regular fa-heart"></i></button>
-                    <% end %>
-                  <% end %>
-                </div>
-                <div class="quantity">
-                  <p><%= review.likes_count %></p>
-                </div>
-              </div>
-            </div>
-          </section>
+          </div>
         </div>
+          </div>
       <% end %>
     <% else %>
       <div class="empty-feed">
