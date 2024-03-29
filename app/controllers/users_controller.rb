@@ -2,6 +2,11 @@ require 'rspotify'
 
 class UsersController < ApplicationController
   RSpotify.authenticate(ENV['SPOTIFY_CLIENT_ID'], ENV['SPOTIFY_CLIENT_SECRET'])
+
+  def index
+    @users = User.all
+  end
+
   def spotify
     @user = User.new
     @spotify_user = RSpotify::User.new(request.env['omniauth.auth'])
@@ -23,10 +28,6 @@ class UsersController < ApplicationController
       sign_in @user, :bypass => true
       redirect_to root_path
     end
-  end
-
-  def index
-    @users = User.all
   end
 
   def show
