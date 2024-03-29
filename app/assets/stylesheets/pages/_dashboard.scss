@@ -1,6 +1,6 @@
 .main {
-  display: flex;
-  flex-direction: column;
+  display: column;
+  flex-direction: row;
   align-items: center;
   margin-left: 100px;
   margin-right: 100px;
@@ -52,4 +52,12 @@ body {
   font-family: 'Cooper Std', Helvetica, sans;
   position: relative;
   min-height: 100vh;
+}
+
+.left-column {
+  flex: 1; /* Take up remaining space */
+}
+
+.right-column {
+  flex: 0 0 250px; /* Fixed width */
 }

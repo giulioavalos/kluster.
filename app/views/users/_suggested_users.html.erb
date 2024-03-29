@@ -1,3 +1,4 @@
+<div class="suggested">
 <div class="card">
 <h1>Suggested Users to Follow</h1>
 <div class="container">
@@ -7,12 +8,13 @@
 <ul>
   <% User.all.each do |user| %>
     <li>
-      <%= image_tag user.avatar %>
+      <%= image_tag user.avatar || 'default_user_icon.jpg' %>
       <%= link_to user.name, user_profile_path(user.id) %> <br>
       <%= button_to 'Follow', followings_path(followed_user_id: user.id), method: :post %>
     </li>
   <% end %>
 </ul>
  </div>
+</div>
 </div>
 </div>
